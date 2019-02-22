@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njit.dao.BaseDao">
+	<insert id="add">
+		insert into ${tableName} values
+		<foreach collection="objects" item="obj" open="("  separator="," close=")">
+			#{obj}
+		</foreach>
+	</insert>
+		
+	<insert id="addForNotMatch">
+		insert into ${tableName}
+		<foreach collection="fieldNames" item="obj" open="("  separator="," close=")">
+			${obj}
+		</foreach>
+		values
+		<foreach collection="fieldValues" item="obj" open="("  separator="," close=")">
+			#{obj}
+		</foreach>
+	</insert>
+	
+	<delete id="delete">
+    	delete from ${tableName} where id=#{id}
+    </delete>
+    
+    <update id="update">
+        update ${tableName} 
+        <set>
+            <foreach collection="objects"  item="obj" >
+                ${obj}, 
+            </foreach>
+        </set>
+        where id=#{id}
+    </update>
+    
+    <select id="select" resultType="map">
+        select * from ${tableName} where id=#{id}
+    </select>
+    
+    <select id="selectAll" resultType="map">
+        select * from ${tableName}
+    </select>
+    
+</mapper>

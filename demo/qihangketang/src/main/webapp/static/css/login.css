@@ -1,0 +1,57 @@
+body{
+    background: #f5f5f5;
+}
+.login-col {
+    padding: 0 0 30px 0;
+    border: 1px #ccc solid;
+    background: #fff;
+}
+
+.login-col ul {
+    border: none;
+}
+
+.login-col ul li {
+    padding: 0;
+}
+
+.login-col ul li a {
+    border: 0px;
+    border-radius: 0;
+    font-size: 16px;
+    margin-right : 0;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+    border: none;
+}
+
+#login{
+    margin-top: 60px;
+}
+
+#regform,
+#loginform{
+    padding: 20px 40px 0 40px;
+}
+#loginform > form > .checkbox{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#regform  > form > div > input.btn,
+#loginform > form > div > input.btn{
+    height: 40px;
+    line-height: 100%;
+    font-size: 16px;
+}
+#regform  > form > div > input.btn{
+    margin-top: 14px;
+}
+#loginform > form > div > p.text-right > a{
+    text-decoration: none;
+}
+#loginform > form > div > p.text-right > a > span{
+    font-size: 30px;
+}

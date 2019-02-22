@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njit.dao.UserDao">
+	<select id="getUserByName" resultType="user">
+		select * from t_user u where u.username=#{username}
+	</select>
+    
+   	
+    <resultMap type="user" id="userRelRoleMap">
+    	<id column="id" property="id"/>
+    	<result column="username" property="username"/>
+    	<result column="password" property="password"/>
+    	<result column="email" property="email"/>
+    	<result column="phone" property="phone"/>
+    	<result column="enable" property="enable"/>
+    	<collection property="roles" select="njit.dao.UserDao.getRoleByUid" column="id">
+    	</collection>
+    </resultMap>
+    
+    <select id="selectRelatedUsers" resultMap="userRelRoleMap">
+    	select 
+    		id,username,password,email,phone,enable
+    	from 
+    		t_user
+    </select>
+    <select id="selectRelatedUser" resultMap="userRelRoleMap">
+    	select 
+    		id,username,password,email,phone,enable
+    	from 
+    		t_user
+    	where id=#{id}
+    </select>
+    
+    <select id="getRoleByUid" resultType="role">
+    	select 
+    		r.id, r.name, r.code
+    	from 
+    		t_role r, t_user_role ur
+    	where 
+    		ur.rid=r.id
+    		and ur.uid=#{id}
+    </select>
+    
+    <select id="selectUsersBySearchPage" resultMap="userRelRoleMap">
+    	select 
+    		id,username,password,email,phone,enable
+    	from 
+    		t_user
+    	where username like #{userInfo} or phone like #{userInfo}
+    </select>
+    
+    <resultMap type="user" id="userRelRoleRelResMap">
+    	<id column="id" property="id"/>
+    	<result column="username" property="username"/>
+    	<result column="password" property="password"/>
+    	<result column="email" property="email"/>
+    	<result column="phone" property="phone"/>
+    	<result column="enable" property="enable"/>
+    	<collection property="roles" ofType="role">
+    		<id column="rid" property="id"/>
+    		<result column="name" property="name"/>
+    		<result column="code" property="code"/>
+    		<collection property="resources" ofType="resource">
+    			<id column="resid" property="id"/>
+    			<result column="path" property="path"/>
+    		</collection>
+    	</collection>
+    </resultMap>
+    <select id="selectUserByUserInfo" resultMap="userRelRoleRelResMap">
+    	select 
+    		u.id,u.username,u.password,u.email,u.phone,u.enable,
+    		r.id rid, r.name, r.code,
+    		res.id resid, res.path
+    	from 
+    		t_user u, t_role r,t_resource res,t_user_role ur,t_role_resource rr
+    	where 
+    		u.id = ur.uid and r.id = ur.rid and r.id = rr.rid and res.id =rr.resid
+    	and 
+    		(u.username=#{userInfo} or u.email=#{userInfo} or u.phone=#{userInfo})
+    </select>
+    
+    
+</mapper>
