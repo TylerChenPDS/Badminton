@@ -57,9 +57,10 @@ div.page-header > h3 > a:hover{
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 2px;
-    margin-right: 10px;
 }
 .tongzhi_h a{
     font-size: 16px;
+    height: 20px;
+    line-height: 20px;
 }
 

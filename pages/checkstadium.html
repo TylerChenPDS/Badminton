@@ -14,6 +14,7 @@
     <![endif]-->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/checkstadium.css" />
+    <link rel="stylesheet" href="lib/bootstrapSelect/css/bootstrap-select.min.css">
 </head>
 
 <body>
@@ -32,7 +33,7 @@
                     <li class="active"><a href="">首页</a></li>
                     <li><a href="">羽毛球场馆动态</a></li>
                     <li><a href="">管理员界面</a></li>
-                    <li><a href="">个人信息维护</a></li>
+                    <li><a href="">场馆预定信息</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -74,7 +75,7 @@
 
         <div class="row">
             <div class="page-header">
-                <h3 class="text-center">最新发布的课程<a href="#">全部课程 &gt;</a></h3>
+                <h3 class="text-center">场地信息<a href="#"></a></h3>
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="thumbnail">
@@ -82,10 +83,10 @@
                         <img src="image/jvm.jpg" alt="course" />
                     </a>
                     <div class="caption">
-                        <h3><a href="#">java系列课程技术JVM调优</a></h3>
+                        <h3><a href="#">1号场地</a></h3>
                         <p>
-                            ￥50.00
-                            <a href="#">其他课程</a>
+                            ￥10.00/h
+                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
                         </p>
                     </div>
                 </div>
@@ -96,10 +97,10 @@
                         <img src="image/jvm.jpg" alt="course" />
                     </a>
                     <div class="caption">
-                        <h3><a href="#">java系列课程技术JVM调优</a></h3>
+                        <h3><a href="#">2号场地</a></h3>
                         <p>
-                            ￥50.00
-                            <a href="#">其他课程</a>
+                            ￥10.00/h
+                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
                         </p>
                     </div>
                 </div>
@@ -110,10 +111,10 @@
                         <img src="image/jvm.jpg" alt="course" />
                     </a>
                     <div class="caption">
-                        <h3><a href="#">java系列课程技术JVM调优</a></h3>
+                        <h3><a href="#">3号场地</a></h3>
                         <p>
-                            ￥50.00
-                            <a href="#">其他课程</a>
+                            ￥10.00/h
+                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>>
                         </p>
                     </div>
                 </div>
@@ -124,17 +125,73 @@
                         <img src="image/jvm.jpg" alt="course" />
                     </a>
                     <div class="caption">
-                        <h3><a href="#">java系列课程技术JVM调优</a></h3>
+                        <h3><a href="#">4号场地</a></h3>
                         <p>
-                            ￥50.00
-                            <a href="#">其他课程</a>
+                            ￥10.00/h
+                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="thumbnail">
+                    <a href="#">
+                        <img src="image/jvm.jpg" alt="course" />
+                    </a>
+                    <div class="caption">
+                        <h3><a href="#">5号场地</a></h3>
+                        <p>
+                            ￥10.00/h
+                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="thumbnail">
+                    <a href="#">
+                        <img src="image/jvm.jpg" alt="course" />
+                    </a>
+                    <div class="caption">
+                        <h3><a href="#">6号场地</a></h3>
+                        <p>
+                            ￥10.00/h
+                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="thumbnail">
+                    <a href="#">
+                        <img src="image/jvm.jpg" alt="course" />
+                    </a>
+                    <div class="caption">
+                        <h3><a href="#">7号场地</a></h3>
+                        <p>
+                            ￥10.00/h
+                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="thumbnail">
+                    <a href="#">
+                        <img src="image/jvm.jpg" alt="course" />
+                    </a>
+                    <div class="caption">
+                        <h3><a href="#">8号场地</a></h3>
+                        <p>
+                            ￥10.00/h
+                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-        
-        
+
+
     </div>
     <div class="footer hidden-xs ">
         <div class="text-center footericon">
@@ -147,9 +204,39 @@
             <a href="#">问题反馈</a> | <a href="#">帮助</a>
         </p>
     </div>
+    <div class="modal fade" id="checkStadium" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">预定场地</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- 这里面的内容是动态改变的 -->
+                    <form id='bookForm' method='POST' action="">
+                        <input type='hidden' name='id' value=''>
+                        <div class="form-group">
+                            <select data-live-search="true" multiple class="selectpicker form-control">
+                                <option value="1">00：00 -- 00：30</option>
+                                <option value="2">00：30 -- 01：00</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button onclick='' type="button" class="btn btn-primary">预定</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="lib/js/jquery-1.12.4.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script src="lib/bootstrapSelect/js/bootstrap-select.min.js"></script>
+    <script src="lib/bootstrapSelect/js/i18n/defaults-zh_CN.min.js"></script>
+    <script type="text/javascript" src="js/checkstadium.js"></script>
 </body>
 
 </html>
