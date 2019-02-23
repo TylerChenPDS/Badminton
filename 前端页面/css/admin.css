@@ -1,0 +1,129 @@
+.navbar-brand {
+    color: #eee !important;
+    position: relative;
+    padding-left: 50px;
+}
+
+.navbar-brand span {
+    font-size: 45px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+
+.navbar-inverse>div>a {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-inverse>div>a>span {
+    font-size: 35px;
+    line-height: 70px;
+    margin-left: 20px;
+}
+
+.login_info {
+    height: 70px;
+    line-height: 70px;
+    color: #eee;
+    padding-right: 50px;
+}
+
+.login_info span {
+    margin-left: 10px;
+}
+
+/* 侧边栏样式 */
+#sidle_bar {
+    width: 220px;
+    background: #f0f0f0;
+    margin-top: -20px;
+    float: left;
+}
+
+.sidlebar_title {
+    width: 220px;
+    height: 55px;
+    position: relative;
+    padding-left: 10px;
+}
+
+.sidlebar_title>p {
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    border-bottom: 1px #ccc solid;
+    width: 210px;
+}
+
+.sidlebar_title>p>span:first-child {
+    font-size: 16px;
+}
+
+.sidlebar_title>p>span:last-child {
+    font-size: 13px;
+}
+
+.sidlebar_container {
+    width: 220px;
+    height: 100%;
+    z-index: -1;
+    padding-top: 140px;
+    overflow-y: scroll;
+    background: #f0f0f0;
+    padding-left: 10px;
+}
+
+.sidlebar_container>a {
+    color: #333;
+    text-decoration: none;
+}
+
+.sidlebar_container>a>span {
+    padding-right: 20px;
+    color: blue;
+}
+
+.sidlebar_container>ul>li {
+    list-style: none;
+    padding-top: 8px;
+}
+
+.sidlebar_container>ul>li>a {
+    color: #333;
+    text-decoration: none;
+
+}
+
+.sidlebar_container>ul>li>a:hover {
+    color: blue;
+}
+
+.sidlebar_container>ul>li>a>span {
+    color: blue;
+    font-weight: bolder;
+}
+
+.navactive{
+    color: blue !important;
+    font-weight: bolder !important;
+}
+#path_nav {
+    margin-left: 240px;
+    border-bottom: 1px #aaa solid;
+    padding-right: 10px;
+}
+
+.breadcrumb {
+    background: #fff !important;
+    margin: 0px;
+}
+
+
+
+#iframe-content {
+    z-index: -2;
+    padding-left: 240px;
+    padding-top: 130px;
+}

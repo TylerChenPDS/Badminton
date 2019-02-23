@@ -1,0 +1,65 @@
+#carousel-qihang > div.carousel-inner>.item{
+    /* height: 400px; */
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+@media(min-width: 769px){
+    #carousel-qihang > div.carousel-inner > .item{
+        height: 400px !important;
+    }
+}
+@media(max-width: 768px){
+    #carousel-qihang > div.carousel-inner > .item{
+        height: auto !important;
+    }
+}
+div.page-header{
+    border-bottom: 4px #ddd solid;
+}
+div.page-header > h3{
+    position: relative;
+}
+div.page-header > h3 > a{
+    position: absolute;
+    right: 0px;
+    color: #666;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 26.4px;
+}
+div.page-header > h3 > a:hover{
+    text-decoration: none;
+}
+.container > .row .caption > h3{
+    margin-top: 5px;
+    font-size: 14px;
+}
+.container > .row .caption > h3 a{
+    color: #333;
+}
+.container > .row .caption p{
+    position: relative;
+    color: red;
+}
+.container > .row .caption p a{
+    position: absolute;
+    right: 0px;
+}
+.tongzhi_h{
+    margin-bottom: 10px;
+}
+.tongzhi_h span{
+    font-size: 14px;
+    color: #fff;
+    background-color: #2699f2;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+.tongzhi_h a{
+    font-size: 16px;
+}
+
