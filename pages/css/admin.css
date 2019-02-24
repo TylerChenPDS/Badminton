@@ -5,7 +5,7 @@
 }
 
 .navbar-brand span {
-    font-size: 45px;
+    font-size: 40px;
     position: absolute;
     top: 20px;
     left: 0;
@@ -105,10 +105,11 @@
     font-weight: bolder;
 }
 
-.navactive{
+.navactive {
     color: blue !important;
     font-weight: bolder !important;
 }
+
 #path_nav {
     margin-left: 240px;
     border-bottom: 1px #aaa solid;
@@ -119,8 +120,6 @@
     background: #fff !important;
     margin: 0px;
 }
-
-
 
 #iframe-content {
     z-index: -2;

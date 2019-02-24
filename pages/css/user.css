@@ -10,6 +10,8 @@ input:focus {
     padding-left: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
+    background-color: #7878ee;
+    color: white;
 }
 
 #search_form {
@@ -25,7 +27,7 @@ input:focus {
     padding-right: 10px;
     margin-top: 15px;
 }
-
+#find_btn,
 #pager div button,
 #search_btn button {
     height: 30px;
@@ -35,10 +37,11 @@ input:focus {
 
 }
 
+#find_btn:hover,
 #pager div button:hover,
 #search_btn button:hover {
     color: white;
-    background-color: #337ab7;
+    background-color: #7878ee;
 }
 
 #search_table {
@@ -48,7 +51,7 @@ input:focus {
 #search_table>div>table tr:hover,
 #search_table>div>table tr:hover > td > a,
 #search_table>div>table tr:first-child {
-    background: #337ab7;
+    background: #7878ee;
     color: #fff;
 }
 

@@ -18,7 +18,6 @@ $(function () {
         $(".collapse_all > li > a").removeClass("navactive");
         $(this).addClass("navactive");
         $("#iframe-content").attr("src",$(this).data("iframe"));
-        
         var twotext = $(this).parent().parent().prev().text();
         $(".breadcrumb > li:nth-child(2) > a").html(twotext);
         $(".breadcrumb > li:nth-child(3)").html($(this).text());
