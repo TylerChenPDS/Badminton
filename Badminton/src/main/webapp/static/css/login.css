@@ -1,0 +1,39 @@
+body{
+    background: #f5f5f5;
+}
+.login-col {
+    padding: 0 0 30px 0;
+    border: 1px #ccc solid;
+    background: #fff;
+}
+.login-col > .title{
+    font-size: 16px;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+#login{
+    margin-top: 60px;
+}
+
+
+#loginform{
+    padding: 20px 40px 0 40px;
+}
+#loginform > form > .checkbox{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#loginform > form > div > input.btn{
+    height: 40px;
+    line-height: 100%;
+    font-size: 16px;
+}
+
+#loginform > form > div > p.text-right > a{
+    text-decoration: none;
+}
+#loginform > form > div > p.text-right > a > span{
+    font-size: 30px;
+}

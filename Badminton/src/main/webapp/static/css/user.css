@@ -1,0 +1,80 @@
+input,
+input:focus {
+    border: 1px #ccc solid !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.serch_title_bar {
+    font-size: 16px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #7878ee;
+    color: white;
+}
+
+#search_form {
+    margin-top: 20px;
+}
+
+#search_form>div>input {
+    width: 160px;
+    padding-right: 30px;
+}
+
+#search_btn {
+    padding-right: 10px;
+    margin-top: 15px;
+}
+#find_btn,
+#pager div button,
+#search_btn button {
+    height: 30px;
+    line-height: 16px;
+    width: 85px;
+    margin-left: 6px;
+
+}
+
+#find_btn:hover,
+#pager div button:hover,
+#search_btn button:hover {
+    color: white;
+    background-color: #7878ee;
+}
+
+#search_table {
+    margin-top: 10px;
+}
+
+#search_table>div>table tr:hover,
+#search_table>div>table tr:hover > td > a,
+#search_table>div>table tr:first-child {
+    background: #7878ee;
+    color: #fff;
+}
+
+#search_table>div>table tr > td > a{
+    margin-left: 5px;
+}
+
+#search_table>div>table tr:first-child>td {
+    border: 0px;
+}
+
+#pager {
+    margin-bottom: 20px;
+}
+
+#pager p {
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 0px;
+    font-size: 16px;
+}
+
+#pager p span {
+    font-weight: bolder;
+    color: #337ab7;
+}

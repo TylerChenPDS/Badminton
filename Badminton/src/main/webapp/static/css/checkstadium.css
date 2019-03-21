@@ -1,0 +1,60 @@
+#carousel-qihang > div.carousel-inner>.item{
+    /* height: 400px; */
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+@media(min-width: 769px){
+    #carousel-qihang > div.carousel-inner > .item{
+        height: 400px !important;
+    }
+}
+@media(max-width: 768px){
+    #carousel-qihang > div.carousel-inner > .item{
+        height: auto !important;
+    }
+}
+/* 课程列表的样式 */
+div.page-header{
+    border-bottom: 4px #ddd solid;
+}
+div.page-header > h3{
+    position: relative;
+}
+div.page-header > h3 > a{
+    position: absolute;
+    right: 0px;
+    color: #666;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 26.4px;
+}
+div.page-header > h3 > a:hover{
+    text-decoration: none;
+}
+.container > .row .caption > h3{
+    margin-top: 5px;
+    font-size: 14px;
+}
+.container > .row .caption > h3 a{
+    color: #333;
+}
+.container > .row .caption p{
+    position: relative;
+    color: red;
+}
+.container > .row .caption p a{
+    position: absolute;
+    right: 0px;
+}
+.container > .row .thumbnail{
+    margin-bottom: 10px;
+    border: 1px #fff solid;
+    border-radius: 0;
+    border-radius: 0px;
+}
+.container > .row .thumbnail:hover{
+    border: 1px #ccc solid;
+    box-shadow: .5px .5px 1px #ddd;
+    outline: 1px #ddd solid;
+}
