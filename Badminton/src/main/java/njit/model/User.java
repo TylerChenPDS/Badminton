@@ -1,11 +1,21 @@
 package njit.model;
 
+import java.util.List;
+
 public class User {
 	private Integer id;
 	private String stuno;
 	private String password;
 	private String telephone;
 	private String email;
+	private List<Role> roles;
+	
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -36,4 +46,12 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", stuno=" + stuno + ", password=" + password + ", telephone=" + telephone
+				+ ", email=" + email + ", roles=" + roles + "]";
+	}
+	
+	
+	
 }

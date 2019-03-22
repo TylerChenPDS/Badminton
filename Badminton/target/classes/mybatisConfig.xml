@@ -11,6 +11,7 @@
 		<setting name="lazyLoadingEnabled" value="true" />
 		<setting name="aggressiveLazyLoading" value="false" />
 	</settings>
+	<!-- 对应包中的模型可以不用包全名  -->
 	<typeAliases>
 		<package name="njit.model" />
 	</typeAliases>

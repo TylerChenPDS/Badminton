@@ -5,6 +5,51 @@ $(function () {
         todayBtn: true,
         language:"zh-CN"
     });
+    
+    //清除模态框中的数据
+    $("#updateUserModal").on("hidden.bs.modal", function() {
+		$(this).removeData("bs.modal");
+	})
+	$("#updateUserModal").on("shown.bs.modal", function() {
+		$("#updateUserModal .selectpicker").selectpicker();
+	})
+    
+    
+    
+    
+    $("#batchDelUserBtn").on("click", function() {
+		var checkboxs = $(".checkone:checked");
+		console.log(checkboxs);
+		if (checkboxs.length == 0){
+			alert("必须要勾选要删除的用户记录")
+			return false;
+		}
+		else {
+			// 获取勾选了的复选框的value
+			var ids = new Array();
+			checkboxs.each(function() {
+				ids.push(this.value);
+			})
+			var datas = JSON.stringify(ids);
+			var flag = delSure();
+			if (flag) {
+				// 通过ajax提交删除用户的请求
+				$.ajax({
+					url : "/qihangketang/admin/batchDelUsers.html",
+					type : "POST",
+					data : {
+						uids : datas
+					},
+					success : function(data) {
+						if(data == "success")
+							alert("success");
+							$(location).attr("href","/qihangketang/admin/userManager.html");
+					}
+				});
+
+			}
+		}
+	})
 })
 function checkall(){
     $(".checkone").prop("checked",$("#checkall").prop("checked"));
@@ -22,4 +67,11 @@ function  checkone(){
         $("#checkall").prop("checked", false);
     }
 
+}
+
+function delSure() {
+	if (confirm("确认要删除这条记录吗")) {
+		return true;
+	} else
+		return false;
 }

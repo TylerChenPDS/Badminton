@@ -15,7 +15,7 @@ public abstract class BaseServiceImp<T> implements BaseService<T>{
 	public abstract BaseDao getBaseDao();
 	
 	protected Class<?> clazz;
-	protected String tableName;
+	protected String tableName; //表的名称 为model类小写
 	
 	public BaseServiceImp() {
 		Type type = this.getClass().getGenericSuperclass();

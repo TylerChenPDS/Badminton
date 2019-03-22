@@ -1,10 +1,12 @@
 package njit.service;
 
-import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageInfo;
 
 import njit.model.User;
 
 
 public interface UserService extends BaseService<User>{
+	public PageInfo<User> selectUsersByPage(int pageNum, int size);
 	
 }
