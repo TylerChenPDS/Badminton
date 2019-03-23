@@ -10,7 +10,7 @@
 		</foreach>
 	</insert>
 		
-	<insert id="addForNotMatch">
+	<insert id="addForNotMatch" useGeneratedKeys="true"  parameterType="int">
 		insert into ${tableName}
 		<foreach collection="fieldNames" item="obj" open="("  separator="," close=")">
 			${obj}

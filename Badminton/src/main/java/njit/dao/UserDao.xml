@@ -3,7 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="njit.dao.UserDao">
-
+	<sql id="userColum">id,stuno,password,telephone,email</sql>
+	
     <resultMap type="user" id="userRelRoleMap">
     	<id column="id" property="id"/>
     	<result column="stuno" property="stuno"/>
@@ -13,6 +14,18 @@
     	<collection property="roles" select="njit.dao.UserDao.getRoleByUid" column="id">
     	</collection>
     </resultMap>
+    
+    <select id="selectRelatedUsersByUserInfo" resultMap="userRelRoleMap">
+    	select 
+    		<include refid="userColum"></include>
+    	from 
+    		user
+    	where 
+    		stuno like #{userinfo} 
+    	or  telephone like #{userinfo}
+    	or  email like #{userinfo}
+    </select>
+    
     <select id="getRoleByUid" resultType="role">
     	select 
     		r.id, r.rolename, r.rolecode,r.discount
@@ -23,7 +36,7 @@
     		and ur.uid=#{id}
     </select>
     
-    <sql id="userColum">id,stuno,password,telephone,email</sql>
+    
     <select id="selectRelatedUsers" resultMap="userRelRoleMap">
     	select 
     		<include refid="userColum"></include>
@@ -38,7 +51,17 @@
     	where id=#{id}
     </select>
     
+    <select id="selectUserByStuno" resultType="user">
+    	select 
+    		<include refid="userColum"></include>
+    	from user
+    	where stuno=#{stuno}
+    </select>
     
+    
+    <delete id="deleteUserRolebyUid">
+    	delete from user_role where uid = #{id}
+    </delete>
     
     
 </mapper>

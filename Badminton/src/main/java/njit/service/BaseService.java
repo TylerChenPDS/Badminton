@@ -6,7 +6,7 @@ public interface BaseService<T> {
 	@Deprecated
 	public void add(T t);
 	
-	public void addForNotMatch(Object[] fieldNames, Object[] fieldValues);
+	public int addForNotMatch(Object[] fieldNames, Object[] fieldValues);
 	
 	public void delete(int id);
 	

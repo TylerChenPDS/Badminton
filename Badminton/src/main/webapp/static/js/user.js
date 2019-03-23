@@ -1,25 +1,31 @@
 $(function () {
-    $(".form_datetime").datetimepicker({
-        format: 'yyyy-mm-dd hh:ii:ss',
-        autoclose: true,
-        todayBtn: true,
-        language:"zh-CN"
-    });
     
     //清除模态框中的数据
     $("#updateUserModal").on("hidden.bs.modal", function() {
 		$(this).removeData("bs.modal");
 	})
-	$("#updateUserModal").on("shown.bs.modal", function() {
-		$("#updateUserModal .selectpicker").selectpicker();
+	
+	$("#addUserModal").on("hidden.bs.modal", function() {
+		$(this).removeData("bs.modal");
 	})
+//	$("#updateUserModal").on("shown.bs.modal", function() {
+//		$("#updateUserModal .selectpicker").selectpicker();
+//	})
     
-    
-    
-    
+	$("#find_btn").on("click",function(){
+		$("#search_form").submit();
+	});
+	
+	$("#inmodaladduserbtn").on("click",function(){
+		$("#adduserform").submit();
+	});
+	
+	$(".addradio  input").first().prop("checked","checked")
+	
     $("#batchDelUserBtn").on("click", function() {
 		var checkboxs = $(".checkone:checked");
 		console.log(checkboxs);
+		console.log("asdaasd");
 		if (checkboxs.length == 0){
 			alert("必须要勾选要删除的用户记录")
 			return false;
@@ -35,7 +41,7 @@ $(function () {
 			if (flag) {
 				// 通过ajax提交删除用户的请求
 				$.ajax({
-					url : "/qihangketang/admin/batchDelUsers.html",
+					url : "/Badminton/admin/deleteUsers.html",
 					type : "POST",
 					data : {
 						uids : datas
@@ -43,7 +49,7 @@ $(function () {
 					success : function(data) {
 						if(data == "success")
 							alert("success");
-							$(location).attr("href","/qihangketang/admin/userManager.html");
+							$(location).attr("href","/Badminton/admin/user_manager.html");
 					}
 				});
 

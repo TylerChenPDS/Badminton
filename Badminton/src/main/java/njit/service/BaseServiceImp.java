@@ -6,6 +6,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import njit.dao.BaseDao;
 import njit.tools.MapToEntityTool;
@@ -22,8 +24,28 @@ public abstract class BaseServiceImp<T> implements BaseService<T>{
 		ParameterizedType pt = (ParameterizedType) type;
 		Type[]  types = pt.getActualTypeArguments();
 		clazz = (Class<?>) types[0];
-		tableName = clazz.getSimpleName().toLowerCase();
+		tableName = mapCamelCaseToUnderscore(clazz.getSimpleName()); //clazz.getSimpleName().toLowerCase();
 	}
+	
+	public String mapCamelCaseToUnderscore(String a){
+		String regex = "([A-Z])";
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(a);
+		int i = 0;
+		String re = "";
+		while(m.find()) {
+			int c = m.start();
+			if(c != 0) {
+				re += a.substring(i + 1,c) + "_" + m.group(1).toLowerCase();
+				i = c;
+			}else {
+				re +=	a.substring(0,1).toLowerCase();
+			}
+			
+		}
+		return re += a.substring(i + 1);
+	}
+	
 	
 	@Deprecated
 	@Override
@@ -91,8 +113,8 @@ public abstract class BaseServiceImp<T> implements BaseService<T>{
 	}
 	
 	@Override
-	public void addForNotMatch(Object[] fieldNames, Object[] fieldValues) {
-		getBaseDao().addForNotMatch(tableName,fieldNames, fieldValues);
+	public int addForNotMatch(Object[] fieldNames, Object[] fieldValues) {
+		return getBaseDao().addForNotMatch(tableName,fieldNames, fieldValues);
 	}
 
 }

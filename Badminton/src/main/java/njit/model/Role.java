@@ -29,6 +29,17 @@ public class Role {
 	public void setDiscount(Float discount) {
 		this.discount = discount;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this)
+			return true;
+		if(obj instanceof Role) {
+			Role role = (Role) obj;
+			return role.id == this.id;
+		}
+		return false;
+	}
 	@Override
 	public String toString() {
 		return "Role [id=" + id + ", rolename=" + rolename + ", rolecode=" + rolecode + ", discount=" + discount + "]";

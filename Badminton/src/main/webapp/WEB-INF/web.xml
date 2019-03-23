@@ -49,10 +49,5 @@
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<!-- <servlet>
-		<servlet-name>InitWebServlet</servlet-name>
-		<servlet-class>njit.web.InitWebServlet</servlet-class>
-		<load-on-startup>2</load-on-startup>
-	</servlet> -->
 	
 </web-app>

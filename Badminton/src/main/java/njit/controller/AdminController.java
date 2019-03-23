@@ -37,7 +37,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/user_manager.html",method=RequestMethod.GET)
-	public String userManager(Model model,@RequestParam(value="pageNum",defaultValue="1")int pageNum, @RequestParam(value="size",defaultValue="5")int size) {
+	public String userManager(Model model,@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
+			@RequestParam(value="size",defaultValue="5")int size) {
+		
 		List<Role> roles = roleService.selectAll();
 		model.addAttribute("allroles", roles);
 		PageInfo<User> users = userService.selectUsersByPage(pageNum, size);
