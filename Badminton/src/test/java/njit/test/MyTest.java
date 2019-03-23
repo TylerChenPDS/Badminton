@@ -1,5 +1,7 @@
 package njit.test;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -68,6 +70,38 @@ public class MyTest {
 			
 		}
 		System.out.println((re += a.substring(i + 1)));
+	}
+	
+	@Test
+	public void testArr() {
+		Integer[] a = {1,2,9,7};
+		Arrays.sort(a);
+		Arrays.sort(a, new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o1 - o2;
+			}
+		});
+		for(int b : a) {
+			System.out.print(b + " ");
+		}
+		System.out.println();
+		Arrays.sort(a, new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o2 - o1;
+			}
+		});
+		
+		for(int b : a) {
+			System.out.print(b + " ");
+		}
+		System.out.println();
+		
+		
+		
+		
+		
 	}
 	
 	

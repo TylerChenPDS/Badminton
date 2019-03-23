@@ -18,5 +18,9 @@ public interface UserService extends BaseService<User>{
 	public PageInfo<User> selectUsersByPageAndUserInfo(String userinfo, int pageNum, int size);
 
 	public User selectUserAndRole(Integer id);
+
+	public void updateUserAndRole(User user,Integer roleid);
+
+	public User login(String userinfo, String password);
 	
 }

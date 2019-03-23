@@ -10,7 +10,6 @@ import com.github.pagehelper.PageInfo;
 
 import njit.dao.BaseDao;
 import njit.dao.UserDao;
-import njit.dao.UserRoleDao;
 import njit.model.User;
 @Service("userService")
 public class UserServiceImp extends BaseServiceImp<User> implements UserService{
@@ -87,6 +86,28 @@ public class UserServiceImp extends BaseServiceImp<User> implements UserService{
 	@Override
 	public User selectUserAndRole(Integer id) {
 		return userDao.selectRelatedUser(id);
+	}
+
+	//更新用户和角色
+	@Override
+	public void updateUserAndRole(User user, Integer roleid) {
+		//用户没有修改的密码，代表不修改密码
+		if(user.getPassword() == null || user.getPassword().trim().equals("")) {
+			System.out.println(user);
+			User pesistentUser = this.select(user.getId());
+			user.setPassword(pesistentUser.getPassword());
+		}
+		
+		//更新用户表中的信息
+		this.update(user);
+		//更新关联的角色
+		userRoleService.updateRoleidByUid(user.getId(),roleid);
+	}
+	
+	//用户登陆
+	@Override
+	public User login(String userinfo, String password) {
+		return userDao.login(userinfo,password);
 	}
 
 }

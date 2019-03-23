@@ -81,3 +81,8 @@ function delSure() {
 	} else
 		return false;
 }
+
+
+function updateSubmit(){
+	$("#updateUserForm").submit();
+}

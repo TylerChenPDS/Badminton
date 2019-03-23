@@ -3,5 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="njit.dao.UserRoleDao">
-    
+    <update id="updateRoleidByUid">
+    	update  user_role
+    	set rid = #{roleid}
+    	where uid = #{uid}
+    </update>
 </mapper>

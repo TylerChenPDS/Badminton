@@ -58,6 +58,14 @@
     	where stuno=#{stuno}
     </select>
     
+    <select id="login" resultMap="userRelRoleMap">
+    	select
+    		<include refid="userColum"></include>
+    	from user
+    	where (stuno=#{userinfo} or telephone=#{userinfo} or email=#{userinfo})
+    		and password=${password}
+    </select>
+    
     
     <delete id="deleteUserRolebyUid">
     	delete from user_role where uid = #{id}

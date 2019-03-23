@@ -38,10 +38,12 @@
 					<li><a href="">管理员界面</a></li>
 					<li><a href="">场馆预定信息</a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				<%--
+					<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span>
 							注册</a></li>
-				</ul>
+					</ul>
+				 --%>
 			</div>
 		</div>
 	</nav>
@@ -51,10 +53,10 @@
 			<div class="col-md-10 col-sm-14 col-xs-20 login-col">
 				<div class="title text-center">登陆账号</div>
 				<div id="loginform" class="tab-pane fade in active">
-					<form action="#" method="POST">
+					<form action="${pageContext.request.contextPath }/login.html" method="POST">
 						<div class="form-group">
-							<label for="">账号：</label> <input placeholder="邮箱/手机号/学号"
-								class="form-control" type="text" name="username">
+							<label for="">账号：<font color="red">${err} </font></label> <input placeholder="邮箱/手机号/学号"
+								class="form-control" type="text" name="userinfo">
 						</div>
 						<div class="form-group">
 							<label for="">密码：</label> <input placeholder="密码"
@@ -71,10 +73,11 @@
 							<p>
 								<a href="#">找回密码</a> | 还没有账号？ <a href="#">注册账号</a>
 							</p>
+							
 							<p class="text-right">使用第三方账号登陆:</p>
 							<p class="text-right">
-								<a href="#"><span class="iconfont icon-qq1"></span></a> <a
-									href="#"><span class="iconfont icon-weixin2"></span></a>
+								<a href="#" onclick="return nonsupport()"><span class="iconfont icon-qq1"></span></a> <a
+									href="#" onclick="return nonsupport()"><span class="iconfont icon-weixin2"></span></a>
 							</p>
 						</div>
 					</form>
@@ -95,6 +98,7 @@
 	</div>
 	<script src="${pageContext.request.contextPath }/static/lib/js/jquery-1.12.4.min.js"></script>
 	<script src="${pageContext.request.contextPath }/static/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath }/static/js/login.js"></script>
 </body>
 
 </html>

@@ -70,7 +70,9 @@
 							<td>${user.email }</td>
 							<td><c:forEach var="role" items="${user.roles }">
 									${role.rolename }
-								</c:forEach></td>
+								</c:forEach>
+								
+								</td>
 							<td><a href="${pageContext.request.contextPath}/admin/updateUserView.html?id=${user.id }" data-target="#updateUserModal" data-toggle="modal">编辑</a><a
 								href="${pageContext.request.contextPath}/admin/deleteUser.html?id=${user.id }"
 								onclick="return delSure()">删除</a></td>
@@ -118,7 +120,7 @@
 						</div>
 						<div class="form-group">
 							<label for="">密码：</label> <input placeholder="密码"
-								class="form-control" type="text" name="password">
+								class="form-control" type="password" name="password">
 						</div>
 						<div class="form-group">
 							<label for="">手机号：</label> <input placeholder="常用手机号"

@@ -18,4 +18,9 @@ public class UserRoleServiceImp extends BaseServiceImp<UserRole>  implements Use
 		return userRoledao;
 	}
 
+	@Override
+	public void updateRoleidByUid(Integer uid, Integer roleid) {
+		userRoledao.updateRoleidByUid(uid,roleid);
+	}
+
 }

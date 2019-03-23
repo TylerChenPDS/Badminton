@@ -1,11 +1,10 @@
 package njit.controller;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +29,25 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	//用户登陆
+	@RequestMapping(value="login.html",method=RequestMethod.POST)
+	public String login(Model model,@RequestParam("userinfo") String userinfo,
+			@RequestParam("password") String password,
+			HttpSession session) {
+		User user = userService.login(userinfo,password);
+		if(user == null) {
+			model.addAttribute("err", "用户名或密码错误");
+			return "/login";
+		}
+		session.setAttribute("logineduser", user);
+		return "redirect:/index.html";
+	}
+	
+	
+	
+	
+	
+	
 	//管理员向数据库中添加一条用户的记录, roleids 代表该用户的角色。
 	@RequestMapping(value="/admin/addUser.html",method=RequestMethod.POST)
 	public String addUser(User user, Integer roleid) {
@@ -37,12 +55,9 @@ public class UserController {
 		return "redirect:/admin/user_manager.html";
 	}
 	
-	
-	
 	//删除一条用户的记录
 	@RequestMapping(value="admin/deleteUser.html",method=RequestMethod.GET)
 	public String deleteUser(@RequestParam("id") Integer id) {
-//		System.err.println(id);
 		userService.deleteUserAndUserRolebyUid(id);
 		return "redirect:/admin/user_manager.html";
 	}
@@ -75,6 +90,13 @@ public class UserController {
 //		System.out.println(users);
 		model.addAttribute("userDatasByPager", users);
 		return "/admin/user_manager";
+	}
+	
+	
+	@RequestMapping(value="admin/updateUser.html",method=RequestMethod.POST)
+	public String updateUser(User user,@RequestParam("roleid") Integer roleid) {
+		userService.updateUserAndRole(user,roleid);
+		return "redirect:/admin/user_manager.html";
 	}
 	
 	
@@ -114,14 +136,15 @@ public class UserController {
 				"					<h4 class=\"modal-title\" id=\"myModalLabel\">修改用户</h4>\r\n" + 
 				"				</div>\r\n" + 
 				"				<div class=\"modal-body\">\r\n" + 
-				"					<form method='post'  action='"+ url +"'>\r\n" + 
+				"					<form id='updateUserForm' method='post'  action='"+ url +"'>\r\n" + 
+				"<input type='hidden' name='id' value='"+ user.getId() +"'/>" +
 				"						<div class=\"form-group\">\r\n" + 
-				"							<label>学号：</label> <input value=\""+ user.getStuno() +"\" type=\"text\" name=\"stuno\"\r\n" + 
+				"							<label>学号：</label> <input readonly='readonly' value=\""+ user.getStuno() +"\" type=\"text\" name=\"stuno\"\r\n" + 
 				"								class=\"form-control\">\r\n" + 
 				"						</div>\r\n" + 
 				"						<div class=\"form-group\">\r\n" + 
 				"							<label for=\"\">密码(密码留空代表不修改)：</label> <input class=\"form-control\"\r\n" + 
-				"								type=\"text\" name=\"password\">\r\n" + 
+				"								type=\"password\" name=\"password\">\r\n" + 
 				"						</div>\r\n" + 
 				"						<div class=\"form-group\">\r\n" + 
 				"							<label for=\"\">手机号：</label> <input value=\""+ user.getTelephone() +"\"\r\n" + 
@@ -141,7 +164,7 @@ public class UserController {
 				"				</div>\r\n" + 
 				"				<div class=\"modal-footer\">\r\n" + 
 				"					<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">关闭</button>\r\n" + 
-				"					<button type=\"button\" class=\"btn btn-primary\">编辑用户</button>\r\n" + 
+				"					<button type=\"button\" onclick='updateSubmit();' class=\"btn btn-primary\">编辑用户</button>\r\n" + 
 				"				</div>";
 	}
 }

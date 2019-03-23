@@ -21,4 +21,6 @@ public interface UserDao extends BaseDao {
 	public User selectUserByStuno(@Param("stuno")String stuno);
 
 	public List<User> selectRelatedUsersByUserInfo(@Param("userinfo")String userinfo);
+
+	public User login(@Param("userinfo")String userinfo, @Param("password")String password);
 }
