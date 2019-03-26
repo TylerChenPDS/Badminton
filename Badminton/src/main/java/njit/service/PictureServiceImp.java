@@ -5,17 +5,16 @@ import org.springframework.stereotype.Service;
 
 import njit.dao.BaseDao;
 import njit.dao.PictureDao;
-import njit.dao.StadiumDao;
-import njit.model.Stadium;
+import njit.model.Picture;
 
-@Service("stadiumService")
-public class StadiumServiceImp extends BaseServiceImp<Stadium> implements StadiumService{
+@Service("pictureService")
+public class PictureServiceImp extends BaseServiceImp<Picture> implements PictureService{
+
 	@Autowired
-	private StadiumDao stadiumDao;
-	
+	private PictureDao pictureDao;
 	@Override
 	public BaseDao getBaseDao() {
-		return stadiumDao;
+		return pictureDao;
 	}
 
 }

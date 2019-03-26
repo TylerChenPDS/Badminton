@@ -44,7 +44,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                    <c:if test="${sessionScope.logineduser!=null}">
-						<li><a>欢迎，<span>${sessionScope.logineduser.stuno }</span></a></li>
+						<li><a>欢迎，<span id="logineduser">${sessionScope.logineduser.stuno }</span></a></li>
 						<li><a
 							href="${pageContext.request.contextPath }/logout.html"><span
 								class="glyphicon glyphicon-log-out"></span> 退出登陆</a></li>
@@ -86,126 +86,29 @@
         </a>
     </div>
     <div class="container">
-
         <div class="row">
-            <div class="page-header">
+         	<div class="page-header">
                 <h3 class="text-center">场地信息<a href="#"></a></h3>
             </div>
-            <div class="col-xs-12 col-md-6">
+        <c:forEach var="stadium" items="${stadiums }">
+        	<div class="col-xs-12 col-md-6">
                 <div class="thumbnail">
                     <a href="#">
-                        <img src="${pageContext.request.contextPath }/static/image/1.jpg" alt="course" />
+                        <img src="${pageContext.request.contextPath }/getpic/${stadium.pid }" alt="${stadium.detail }" />
                     </a>
                     <div class="caption">
-                        <h3><a href="#">1号场地</a></h3>
+                        <h3><a href="#">${stadium.detail }</a></h3>
                         <p>
-                            ￥10.00/h
-                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
+                            ￥${stadium.charge }/h
+                            <!-- <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a> -->
+                            <a href="javascript:void(0);" onclick="book()">预定</a>
+                            
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="thumbnail">
-                    <a href="#">
-                        <img src="${pageContext.request.contextPath }/static/image/2.jpg" alt="course" />
-                    </a>
-                    <div class="caption">
-                        <h3><a href="#">2号场地</a></h3>
-                        <p>
-                            ￥10.00/h
-                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="thumbnail">
-                    <a href="#">
-                        <img src="${pageContext.request.contextPath }/static/image/3.jpg" alt="course" />
-                    </a>
-                    <div class="caption">
-                        <h3><a href="#">3号场地</a></h3>
-                        <p>
-                            ￥10.00/h
-                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="thumbnail">
-                    <a href="#">
-                        <img src="${pageContext.request.contextPath }/static/image/4.jpg" alt="course" />
-                    </a>
-                    <div class="caption">
-                        <h3><a href="#">4号场地</a></h3>
-                        <p>
-                            ￥10.00/h
-                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="thumbnail">
-                    <a href="#">
-                        <img src="${pageContext.request.contextPath }/static/image/5.jpg" alt="course" />
-                    </a>
-                    <div class="caption">
-                        <h3><a href="#">5号场地</a></h3>
-                        <p>
-                            ￥10.00/h
-                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="thumbnail">
-                    <a href="#">
-                        <img src="${pageContext.request.contextPath }/static/image/6.jpg" alt="course" />
-                    </a>
-                    <div class="caption">
-                        <h3><a href="#">6号场地</a></h3>
-                        <p>
-                            ￥10.00/h
-                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="thumbnail">
-                    <a href="#">
-                        <img src="${pageContext.request.contextPath }/static/image/7.jpg" alt="course" />
-                    </a>
-                    <div class="caption">
-                        <h3><a href="#">7号场地</a></h3>
-                        <p>
-                            ￥10.00/h
-                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="thumbnail">
-                    <a href="#">
-                        <img src="${pageContext.request.contextPath }/static/image/8.jpg" alt="course" />
-                    </a>
-                    <div class="caption">
-                        <h3><a href="#">8号场地</a></h3>
-                        <p>
-                            ￥10.00/h
-                            <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+        </c:forEach>
         </div>
-
-
     </div>
     <div class="footer hidden-xs ">
         <div class="text-center footericon">
@@ -221,23 +124,23 @@
     <div class="modal fade" id="checkStadium" tabindex="-1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
+                <div class='modal-header'>
+                    <button type='button' class='close' data-dismiss='modal'>
                         <span>&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">预定场地</h4>
+                    <h4 class='modal-title' id='myModalLabel'>预定场地</h4>
                 </div>
-                <div class="modal-body">
+                <div class='modal-body'>
                     <!-- 这里面的内容是动态改变的 -->
-                    <form id='bookForm' method='POST' action="">
+                    <form id='bookForm' method='POST' action=''>
                         <input type='hidden' name='id' value=''>
-                        <div class="form-group">
-                            <input type="text" name="test" class="form-control">
+                        <div class='form-group'>
+                            <input type='text' name='test' class='form-control'>
                         </div>
-                        <div class="form-group">
-                            <select data-live-search="true" multiple class="selectpicker form-control">
-                                <option value="1">00：00 -- 00：30</option>
-                                <option value="2">00：30 -- 01：00</option>
+                        <div class='form-group'>
+                            <select data-live-search='true' multiple class='selectpicker form-control'>
+                                <option value='1'>00：00 -- 00：30</option>
+                                <option value='2'>00：30 -- 01：00</option>
                             </select>
                         </div>
                     </form>

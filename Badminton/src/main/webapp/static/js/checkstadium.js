@@ -24,3 +24,14 @@ function changeBgImg() {
         }
     });
 }
+
+
+function book(){
+	var a = document.getElementById("logineduser");
+	console.log(a);
+	if(a == null){ //用户未登录
+		$(location).attr('href', '/Badminton/login.html');
+	}else{
+		$("#checkStadium").modal('toggle');
+	}
+}

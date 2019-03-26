@@ -4,7 +4,14 @@ public class Stadium {
 	private Integer id;
 	private String detail;
 	private Float charge;
-	private byte[] picture;
+	private Integer pid;//图片的
+	
+	public Integer getPid() {
+		return pid;
+	}
+	public void setPid(Integer pid) {
+		this.pid = pid;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -23,14 +30,9 @@ public class Stadium {
 	public void setCharge(Float charge) {
 		this.charge = charge;
 	}
-	public byte[] getPicture() {
-		return picture;
-	}
-	public void setPicture(byte[] picture) {
-		this.picture = picture;
-	}
 	@Override
 	public String toString() {
-		return "Stadium [id=" + id + ", detail=" + detail + ", charge=" + charge + "]";
+		return "Stadium [id=" + id + ", detail=" + detail + ", charge=" + charge + ", pid=" + pid + "]";
 	}
+	
 }
