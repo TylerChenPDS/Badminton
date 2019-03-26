@@ -43,8 +43,71 @@ public class UserController {
 		return "redirect:/index.html";
 	}
 	
+	//用户注册
+	@RequestMapping(value="register.html",method=RequestMethod.POST)
+	public String register(Model model,User user) {
+		System.out.println(user);
+//		验证
+		if(user.getStuno() != null) {
+			if(userService.validateisExistByColum("stuno", user.getStuno())) {
+				model.addAttribute("stunoerr", "该学号已被注册");
+				return "register";
+			}
+				
+		}
+		if(user.getTelephone() != null) {
+			if(userService.validateisExistByColum("telephone", user.getTelephone())) {
+				model.addAttribute("telephoneerr", "该手机号已被注册");
+				return "register";
+			}
+		}
+		
+		if(user.getEmail() != null) {
+			if(userService.validateisExistByColum("email", user.getEmail())) {
+				model.addAttribute("emailerr", "该邮箱已注册");
+				return "register";
+			}
+		}
+		userService.addUserAndRole(user, 2);//默认是普通用户
+		model.addAttribute("registeruser", user.getTelephone());
+		return "login";
+	}
+	
+	//找回密码
+	@RequestMapping(value="findPassword",method=RequestMethod.POST)
+	public String findPassword(Model model,User user) {
+		if(user.getStuno() != null)
+			if(!userService.validateisExistByColum("stuno", user.getStuno())) {
+				model.addAttribute("stunoerr", "该学号未被注册");
+				return "findpassword";
+			}
+		
+		if(user.getTelephone() != null)
+			if(!userService.validateisExistByColum("telephone", user.getTelephone())) {
+				model.addAttribute("telephoneerr", "该电话号码未被注册！");
+				return "findpassword";
+			}
+		
+		if(user.getPassword() == null) {
+			model.addAttribute("passworderr", "密码不能为空");
+			return "findpassword";
+		}
+		
+		if(!userService.updatePasswordStunoRelTel(user.getStuno(),user.getTelephone(),user.getPassword())) {
+			model.addAttribute("stunoerr", "请输入正确的关联信息");
+			return "findpassword";
+		}
+		model.addAttribute("findPasswordUser", user.getTelephone());
+		return  "login";
+	}
 	
 	
+	//登出
+	@RequestMapping(value="logout.html",method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.removeAttribute("logineduser");
+		return "redirect:/index.html";
+	}
 	
 	
 	

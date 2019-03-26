@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 	<!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -32,18 +33,29 @@
             </div>
             <div class="collapse navbar-collapse" id="qihangnavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="">首页</a></li>
-                    <li><a href="">羽毛球场馆动态</a></li>
-                    <li><a href="">管理员界面</a></li>
-                    <li><a href="">场馆预定信息</a></li>
+                     <li class="active"><a href="${pageContext.request.contextPath }/index.html">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/checkstadium.html">羽毛球场馆动态</a></li>
+					<c:if test="${logineduser!=null}">
+						<li><a href="${pageContext.request.contextPath }/bookinformation.html">场馆预定信息</a></li>
+						<c:if test="${logineduser.roles[0].rolecode=='manager'}">
+							<li><a href="${pageContext.request.contextPath }/admin/admin.html">管理员界面</a></li>
+						</c:if>
+					</c:if>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-user"></span> 登陆</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-log-out"></span> 注册</a>
-                    </li>
+                   <c:if test="${sessionScope.logineduser!=null}">
+						<li><a>欢迎，<span>${sessionScope.logineduser.stuno }</span></a></li>
+						<li><a
+							href="${pageContext.request.contextPath }/logout.html"><span
+								class="glyphicon glyphicon-log-out"></span> 退出登陆</a></li>
+					</c:if>
+					<c:if test="${sessionScope.logineduser==null}">
+						<li><a href="${pageContext.request.contextPath }/login.html"><span
+								class="glyphicon glyphicon-user"></span> 登陆</a></li>
+						<li><a
+							href="${pageContext.request.contextPath }/register.html"><span
+								class="glyphicon glyphicon-log-out"></span> 注册</a></li>
+					</c:if>
                 </ul>
             </div>
         </div>
@@ -82,7 +94,7 @@
             <div class="col-xs-12 col-md-6">
                 <div class="thumbnail">
                     <a href="#">
-                        <img src="image/jvm.jpg" alt="course" />
+                        <img src="${pageContext.request.contextPath }/static/image/1.jpg" alt="course" />
                     </a>
                     <div class="caption">
                         <h3><a href="#">1号场地</a></h3>
@@ -96,7 +108,7 @@
             <div class="col-xs-12 col-md-6">
                 <div class="thumbnail">
                     <a href="#">
-                        <img src="image/jvm.jpg" alt="course" />
+                        <img src="${pageContext.request.contextPath }/static/image/2.jpg" alt="course" />
                     </a>
                     <div class="caption">
                         <h3><a href="#">2号场地</a></h3>
@@ -110,7 +122,7 @@
             <div class="col-xs-12 col-md-6">
                 <div class="thumbnail">
                     <a href="#">
-                        <img src="image/jvm.jpg" alt="course" />
+                        <img src="${pageContext.request.contextPath }/static/image/3.jpg" alt="course" />
                     </a>
                     <div class="caption">
                         <h3><a href="#">3号场地</a></h3>
@@ -124,7 +136,7 @@
             <div class="col-xs-12 col-md-6">
                 <div class="thumbnail">
                     <a href="#">
-                        <img src="image/jvm.jpg" alt="course" />
+                        <img src="${pageContext.request.contextPath }/static/image/4.jpg" alt="course" />
                     </a>
                     <div class="caption">
                         <h3><a href="#">4号场地</a></h3>
@@ -138,7 +150,7 @@
             <div class="col-xs-12 col-md-6">
                 <div class="thumbnail">
                     <a href="#">
-                        <img src="image/jvm.jpg" alt="course" />
+                        <img src="${pageContext.request.contextPath }/static/image/5.jpg" alt="course" />
                     </a>
                     <div class="caption">
                         <h3><a href="#">5号场地</a></h3>
@@ -152,7 +164,7 @@
             <div class="col-xs-12 col-md-6">
                 <div class="thumbnail">
                     <a href="#">
-                        <img src="image/jvm.jpg" alt="course" />
+                        <img src="${pageContext.request.contextPath }/static/image/6.jpg" alt="course" />
                     </a>
                     <div class="caption">
                         <h3><a href="#">6号场地</a></h3>
@@ -166,7 +178,7 @@
             <div class="col-xs-12 col-md-6">
                 <div class="thumbnail">
                     <a href="#">
-                        <img src="image/jvm.jpg" alt="course" />
+                        <img src="${pageContext.request.contextPath }/static/image/7.jpg" alt="course" />
                     </a>
                     <div class="caption">
                         <h3><a href="#">7号场地</a></h3>
@@ -180,7 +192,7 @@
             <div class="col-xs-12 col-md-6">
                 <div class="thumbnail">
                     <a href="#">
-                        <img src="image/jvm.jpg" alt="course" />
+                        <img src="${pageContext.request.contextPath }/static/image/8.jpg" alt="course" />
                     </a>
                     <div class="caption">
                         <h3><a href="#">8号场地</a></h3>

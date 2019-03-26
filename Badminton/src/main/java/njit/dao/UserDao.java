@@ -23,4 +23,8 @@ public interface UserDao extends BaseDao {
 	public List<User> selectRelatedUsersByUserInfo(@Param("userinfo")String userinfo);
 
 	public User login(@Param("userinfo")String userinfo, @Param("password")String password);
+
+	public int validateisExistByColum(@Param("column")String string, @Param("value")Object value);
+
+	public int updatePasswordStunoRelTel(@Param("stuno")String stuno, @Param("telephone")String telephone, @Param("password")String password);
 }

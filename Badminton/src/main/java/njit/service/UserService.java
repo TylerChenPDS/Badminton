@@ -22,5 +22,9 @@ public interface UserService extends BaseService<User>{
 	public void updateUserAndRole(User user,Integer roleid);
 
 	public User login(String userinfo, String password);
+
+	public boolean validateisExistByColum(String colum,Object value);
+
+	public boolean updatePasswordStunoRelTel(String stuno, String telephone,String password);
 	
 }

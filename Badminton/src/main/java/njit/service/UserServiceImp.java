@@ -53,11 +53,9 @@ public class UserServiceImp extends BaseServiceImp<User> implements UserService{
 		};
 		this.addForNotMatch(userFileNames, userValues);
 		
-		
 		//2,查找新插入用户的id
 		User userwithid = userDao.selectUserByStuno(user.getStuno());
 //		System.out.println(userwithid);
-		
 		
 		//3,向UserRole表中添加关联关系
 		userRoleService.addForNotMatch(new Object[] {
@@ -108,6 +106,19 @@ public class UserServiceImp extends BaseServiceImp<User> implements UserService{
 	@Override
 	public User login(String userinfo, String password) {
 		return userDao.login(userinfo,password);
+	}
+
+	@Override
+	public boolean validateisExistByColum(String colum,Object value) {
+		int flag = userDao.validateisExistByColum(colum,value);
+		System.out.println(flag);
+		return flag != 0;
+	}
+
+	@Override
+	public boolean updatePasswordStunoRelTel(String stuno, String telephone,String password) {
+		int flag = userDao.updatePasswordStunoRelTel(stuno,telephone,password);
+		return flag != 0;
 	}
 
 }

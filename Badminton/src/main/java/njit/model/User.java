@@ -8,6 +8,7 @@ public class User {
 	private String password;
 	private String telephone;
 	private String email;
+	private String weixinid;
 	private List<Role> roles;
 	
 	public List<Role> getRoles() {
@@ -45,6 +46,12 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getWeixinid() {
+		return weixinid;
+	}
+	public void setWeixinid(String weixinid) {
+		this.weixinid = weixinid;
 	}
 	@Override
 	public String toString() {

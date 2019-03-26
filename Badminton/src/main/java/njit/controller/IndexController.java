@@ -17,6 +17,7 @@ public class IndexController {
 	
 	@RequestMapping(method=RequestMethod.GET,path="/register.html")
 	public String registerView() {
+		
 		return "register";
 	}
 	
@@ -32,7 +33,13 @@ public class IndexController {
 	
 	@RequestMapping(method=RequestMethod.GET,path="/checkstadium.html")
 	public String checkStadium() {
+		
 		return "checkstadium";
+	}
+	
+	@RequestMapping(method=RequestMethod.GET,path="/bookinformation.html")
+	public String bookInformation() {
+		return "bookinformation";
 	}
 	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -20,6 +21,13 @@
 </head>
 
 <body>
+	<c:if test="${registeruser!=null}">
+		<script type="text/javascript">alert("注册成功！")</script>
+	</c:if>
+	<c:if test="${findPasswordUser!=null}">
+		<script type="text/javascript">alert("成功！")</script>
+	</c:if>
+	
 	<nav id="main_nav" class="navbar navbar-default navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -33,10 +41,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="qihangnavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="">首页</a></li>
-					<li><a href="">羽毛球场馆动态</a></li>
-					<li><a href="">管理员界面</a></li>
-					<li><a href="">场馆预定信息</a></li>
+					 <li class="active"><a href="${pageContext.request.contextPath }/index.html">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/checkstadium.html">羽毛球场馆动态</a></li>
 				</ul>
 				<%--
 					<ul class="nav navbar-nav navbar-right">
@@ -55,12 +61,25 @@
 				<div id="loginform" class="tab-pane fade in active">
 					<form action="${pageContext.request.contextPath }/login.html" method="POST">
 						<div class="form-group">
-							<label for="">账号：<font color="red">${err} </font></label> <input placeholder="邮箱/手机号/学号"
-								class="form-control" type="text" name="userinfo">
+							<label for="">账号：<font color="red">${err} </font></label> 
+							
+							<c:if  test="${registeruser!=null}">
+							<input placeholder="邮箱/手机号/学号"
+								class="form-control" type="text" required="required" value="${registeruser}" name="userinfo">
+							</c:if>
+							<c:if  test="${findPasswordUser!=null}">
+								<input placeholder="邮箱/手机号/学号"
+								class="form-control" type="text" required="required" value="${findPasswordUser}" name="userinfo">
+							</c:if>
+							<c:if  test="${findPasswordUser==null and registeruser==null}">
+								<input placeholder="邮箱/手机号/学号"
+								class="form-control" type="text" required="required"  name="userinfo">
+							</c:if>
+							
 						</div>
 						<div class="form-group">
 							<label for="">密码：</label> <input placeholder="密码"
-								class="form-control" type="password" name="password">
+								class="form-control" required="required" type="password" name="password">
 						</div>
 						<div class="checkbox">
 							<label><input type="checkbox" name="remeberme">10天内自动登陆</label>
@@ -71,7 +90,7 @@
 						</div>
 						<div class="form-group">
 							<p>
-								<a href="#">找回密码</a> | 还没有账号？ <a href="#">注册账号</a>
+								<a href="${pageContext.request.contextPath }/findpassword.html">找回密码</a> | 还没有账号？ <a href="#">注册账号</a>
 							</p>
 							
 							<p class="text-right">使用第三方账号登陆:</p>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -30,16 +31,14 @@
             </div>
             <div class="collapse navbar-collapse" id="qihangnavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="">首页</a></li>
-                    <li><a href="">羽毛球场馆动态</a></li>
-                    <li><a href="">管理员界面</a></li>
-                    <li><a href="">场馆预定信息</a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath }/index.html">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/checkstadium.html">羽毛球场馆动态</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+               <!--  <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#"><span class="glyphicon glyphicon-user"></span> 登陆</a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </nav>
@@ -51,34 +50,34 @@
                 <div id="regform">
                     <form action="#" method="post">
                         <div class="form-group">
-                            <label for="">学号</label>
-                            <input placeholder="学号" class="form-control" type="text" name="stuno">
+                            <label for="">学号:&nbsp;<font color="red"> ${stunoerr }</font></label>
+                            <input placeholder="学号" required="required"  class="form-control" type="text" name="stuno">
                         </div>
                         <div class="form-group">
-                            <label for="">手机：</label>
-                            <input placeholder="常用手机号" class="form-control" type="text" name="telephone">
+                            <label for="">手机：&nbsp;<font color="red"> ${telephoneerr }</font></label>
+                            <input placeholder="常用手机号" required="required" class="form-control" type="text" name="telephone">
                         </div>
                         <div class="form-group">
-                            <label for="">密码：</label>
-                            <input placeholder="密码" class="form-control" type="text" name="password">
+                            <label for="">密码：&nbsp; <font color="red"> </font></label>
+                            <input placeholder="密码" required="required" class="form-control" type="text" name="password">
                         </div>
                         <div class="form-group">
-                                <label for="">邮箱：</label>
+                                <label for="">邮箱：&nbsp; <font color="red">${emailerr }</font></label>
                                 <input placeholder="邮箱" class="form-control" type="text" name="email">
                             </div>
                         <div class="form-group">
                             <label for="">手机验证码：</label>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <input type="text" name="phoneCode" class="form-control">
+                                    <input type="text"  name="phoneCode" disabled="disabled" class="form-control disalbled">
                                 </div>
                                 <div class="col-xs-12">
-                                    <input type="button" class="form-control btn btn-default" value="点击获取验证码">
+                                    <input type="button" class="form-control  btn btn-default disabled" value="点击获取验证码">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="登陆" class="form-control btn btn-primary">
+                            <input type="submit" value="注册" class="form-control btn btn-primary">
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -31,10 +32,14 @@
             </div>
             <div class="collapse navbar-collapse" id="qihangnavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="">首页</a></li>
-                    <li><a href="">羽毛球场馆动态</a></li>
-                    <li><a href="">管理员界面</a></li>
-                    <li><a href="">场馆预定信息</a></li>
+                    <li class="active"><a  href="${pageContext.request.contextPath }/index.html">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/checkstadium.html">羽毛球场馆动态</a></li>
+					<c:if test="${logineduser!=null}">
+						<li><a href="${pageContext.request.contextPath }/bookinformation.html">场馆预定信息</a></li>
+						<c:if test="${logineduser.roles[0].rolecode=='manager'}">
+							<li><a href="${pageContext.request.contextPath }/admin/admin.html">管理员界面</a></li>
+						</c:if>
+					</c:if>
                 </ul>
             </div>
         </div>
