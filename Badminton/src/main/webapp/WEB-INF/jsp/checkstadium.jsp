@@ -21,6 +21,11 @@
 </head>
 
 <body>
+	<c:if test="${feedback!=null}">
+		<script type="text/javascript">
+			alert("${feedback}");
+		</script>
+	</c:if>
     <nav id="main_nav" class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -100,9 +105,7 @@
                         <h3><a href="#">${stadium.detail }</a></h3>
                         <p>
                             ￥${stadium.charge }/h
-                            <!-- <a href="#" data-toggle="modal" data-target="#checkStadium">预定</a> -->
-                            <a href="javascript:void(0);" onclick="book()">预定</a>
-                            
+                            <a href="${pageContext.request.contextPath }/bookView.html?sid=${stadium.id}" data-toggle="modal" data-target="#checkStadium">预定</a>
                         </p>
                     </div>
                 </div>
@@ -124,31 +127,7 @@
     <div class="modal fade" id="checkStadium" tabindex="-1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class='modal-header'>
-                    <button type='button' class='close' data-dismiss='modal'>
-                        <span>&times;</span>
-                    </button>
-                    <h4 class='modal-title' id='myModalLabel'>预定场地</h4>
-                </div>
-                <div class='modal-body'>
-                    <!-- 这里面的内容是动态改变的 -->
-                    <form id='bookForm' method='POST' action=''>
-                        <input type='hidden' name='id' value=''>
-                        <div class='form-group'>
-                            <input type='text' name='test' class='form-control'>
-                        </div>
-                        <div class='form-group'>
-                            <select data-live-search='true' multiple class='selectpicker form-control'>
-                                <option value='1'>00：00 -- 00：30</option>
-                                <option value='2'>00：30 -- 01：00</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button onclick='' type="button" class="btn btn-primary">预定</button>
-                </div>
+                
             </div>
         </div>
     </div>

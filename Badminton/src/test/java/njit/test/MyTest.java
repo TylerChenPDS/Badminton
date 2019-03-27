@@ -1,5 +1,6 @@
 package njit.test;
 
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -97,12 +98,15 @@ public class MyTest {
 			System.out.print(b + " ");
 		}
 		System.out.println();
-		
-		
-		
-		
-		
 	}
+	
+	@Test
+	public void testDate() {
+		Date date = new Date(System.currentTimeMillis());
+		System.out.println(date);
+	}
+	
+	
 	
 	
 }

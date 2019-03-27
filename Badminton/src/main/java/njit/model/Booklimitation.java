@@ -6,7 +6,7 @@ public class Booklimitation {
 	private int id;
 	private int sid;
 	private Date date;
-	private int timecode;
+	private String timecode;
 	public int getId() {
 		return id;
 	}
@@ -25,10 +25,15 @@ public class Booklimitation {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getTimecode() {
+	public String getTimecode() {
 		return timecode;
 	}
-	public void setTimecode(int timecode) {
+	public void setTimecode(String timecode) {
 		this.timecode = timecode;
 	}
+	@Override
+	public String toString() {
+		return "Booklimitation [id=" + id + ", sid=" + sid + ", date=" + date + ", timecode=" + timecode + "]";
+	}
+	
 }

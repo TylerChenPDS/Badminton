@@ -4,11 +4,14 @@ $(function () {
         changeBgImg();
     });
     $("#checkStadium").on("hidden.bs.modal", function() {
+    	console.log("removeData");
         $(this).removeData("bs.modal");
-	})
+	});
+	
+	
 	$("#checkStadium").on("shown.bs.modal", function() {
         $("#checkStadium .selectpicker").selectpicker();
-	})
+	});
 });
 
 function changeBgImg() {
@@ -25,13 +28,20 @@ function changeBgImg() {
     });
 }
 
-
-function book(){
-	var a = document.getElementById("logineduser");
-	console.log(a);
-	if(a == null){ //用户未登录
-		$(location).attr('href', '/Badminton/login.html');
+function submitBook(){
+	if(document.getElementById("logineduser") == null){
+		alert("请先登陆");
 	}else{
-		$("#checkStadium").modal('toggle');
+		$("#bookForm").submit();
 	}
+	
 }
+//function book(){
+//	var a = document.getElementById("logineduser");
+//	console.log(a);
+//	if(a == null){ //用户未登录
+//		$(location).attr('href', '/Badminton/login.html');
+//	}else{
+//		$("#checkStadium").modal('toggle');
+//	}
+//}

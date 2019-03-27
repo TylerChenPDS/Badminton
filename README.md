@@ -1,4 +1,3 @@
-# Badminton
 数据库表的构建
 -------
 
@@ -9,7 +8,7 @@
 Dao层代码书写
 --------
 
-BaseDao（包括BaseDao.xml文件）代码书写
+**BaseDao**（包括**BaseDao.xml**文件）代码书写
 
 介绍：数据库一些基本的增删改查。这个接口是一个公共的接口其他的dao接口都可以继承这个接口。
 
@@ -59,6 +58,42 @@ select * from ${tableName} where id=#{id}
 
          insert into ${tableName} () values(value1,value2,…)
 
+Service层代码书写
+------------
+
+service层的代码位于package njit.service 中，其中XxxService接口定义了对应XxxServiceImp应该实现的方法。
+
+**BaseService<T>**代码的书写，定义的接口如下，使方法和Dao层对应，此处不在赘述,其中泛型实现类应该传入一个对应的模型类，所有其他Service层接口都应该继承这个接口，并传入对应的模型。
+
+         @Deprecate
+
+         public void add(T t);
+
+         public int addForNotMatch(Object\[\] fieldNames, Object\[\] fieldValues);
+
+         public void delete(int id);
+
+         public void update(T t);
+
+         public T select(int id);
+
+         public List<T> selectAll();
+
+**BaseServiceImp<T>** 实现了**BaseService<T>**中的方法，并定义一个抽象的方法，这个方法的作用是返回各自模型对应Dao层操作数据库的 对象
+
+public abstract BaseDao getBaseDao();
+
+Controller层代码书写
+---------------
+
+**IndexController** 定义了所有视图的访问链接
+
+**AdminController** 定义了所有管理员操作的访问请求地址和操作 如对用户的增删改查
+
+**BookController** 定义了所有预定相关的访问请求地址和操作，如用户的预定请求
+
+**UserController** 定义了所有和用户相关的访问请求地址和操作，如用户的登陆注册找回密码
+
 参考文档地址
 ------
 
@@ -77,5 +112,11 @@ boostrap 日期选择插件[http://www.bootcss.com/p/bootstrap-datetimepicker/de
 
 1，模糊查询，点击下一页显示的就不再是结果数据
 
-需要权限控制的页面（未做）
--------------
+需要权限控制的Mapping（未做）
+------------------
+
+未登录不能访问的mapping
+
+/bookinformation.html
+
+/booking.html

@@ -1,8 +1,12 @@
 package njit.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import njit.model.Booking;
 import njit.model.Picture;
 import njit.model.Stadium;
+import njit.model.User;
 import njit.service.BookingService;
-import njit.service.BooklimitationService;
 import njit.service.PictureService;
 import njit.service.StadiumService;
 
@@ -56,16 +61,15 @@ public class IndexController {
 	}
 	
 	@Autowired
+	private BookingService bookingService;
+	
+	@Autowired
 	private StadiumService stadiumService; 
 	
 	@Autowired
 	private PictureService pictureService;
 	
-	@Autowired
-	private BookingService bookingService;
-	
-	@Autowired
-	private BooklimitationService booklimitationService;
+
 	
 	
 	@RequestMapping(value= {"/","","/index","/index.html"})
@@ -96,14 +100,36 @@ public class IndexController {
 	public String checkStadium(Model model) {
 		List<Stadium> stadiums = stadiumService.selectAll();
 		model.addAttribute("stadiums", stadiums);
+		
+		
 		return "checkstadium";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET,path="/bookinformation.html")
-	public String bookInformation() {
+	public String bookInformation(Model model,HttpSession session) {
+		User user = (User) session.getAttribute("logineduser");
+		
+		Date today = new Date(System.currentTimeMillis());
+		
+		List<Booking> bookings = bookingService.selectTodayBookingDatas(user.getId(),today);
+		
+		model.addAttribute("bookings", bookings);
+		
+		SimpleDateFormat si = new  SimpleDateFormat("HH:m");
+		String[] timecodes = si.format(today).split(":");
+		int nowTimeCode = 0;
+		Integer hh = Integer.parseInt(timecodes[0]);
+		int mm = Integer.parseInt(timecodes[1]);
+		if(mm >= 30)
+			nowTimeCode = hh * 2 + 2;
+		else
+			nowTimeCode = hh * 2 + 1;
+		
+		model.addAttribute("nowTimeCode", nowTimeCode);
 		return "bookinformation";
 	}
 	
+	//通过 图片id获取所有图片的方法
 	@ResponseBody
 	@RequestMapping(value="/getpic/{id}",method=RequestMethod.GET)
 	public byte[] getPicture(@PathVariable("id")Integer id) {

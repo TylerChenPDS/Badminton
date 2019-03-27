@@ -3,5 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="njit.dao.BooklimitationDao">
-  
+	<sql id="booklimitationColumns">
+		id,sid,date,timecode
+	</sql>
+  	<select id="selectTimeCodeBySidAndDate" resultType="booklimitation">
+  		select <include refid="booklimitationColumns"></include>
+  		from booklimitation where sid=#{sid} and date=#{date}
+  	</select>
 </mapper>

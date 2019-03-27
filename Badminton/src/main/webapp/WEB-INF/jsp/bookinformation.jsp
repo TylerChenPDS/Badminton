@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*"%>
+
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -56,7 +57,7 @@
         <div class="row">
             <div class="page-header">
                 <h3 class="text-center">
-                    预定信息
+                    预定信息(只显示当天的预定信息)
                 </h3>
             </div>
             <div id="booktable" class="table-responsive">
@@ -64,27 +65,21 @@
                     <tr>
                         <td>预定时间</td>
                         <td>场馆</td>
-                        <td>总价</td>
                         <td>操作</td>
                     </tr>
-                    <tr>
-                        <td>预定时间</td>
-                        <td>场馆</td>
-                        <td>总价</td>
-                        <td><a href="">退订</a></td>
+                    <c:forEach var="booking" items="${bookings }">
+                     <tr>
+                        <td>${booking.timeandcode} </td>
+                        <td>${booking.sid }号场馆</td>
+                        <c:if test="${booking.timecode<=nowTimeCode}">
+                    		<td><a href="javascript:void(0);">已过期</a></td>
+                    	</c:if>
+                    	<c:if test="${booking.timecode>nowTimeCode}">
+                    		<td><a href="">退订</a></td>
+                    	</c:if>
                     </tr>
-                    <tr>
-                        <td>预定时间</td>
-                        <td>场馆</td>
-                        <td>总价</td>
-                        <td><a href="">退订</a></td>
-                    </tr>
-                    <tr>
-                        <td>预定时间</td>
-                        <td>场馆</td>
-                        <td>总价</td>
-                        <td><a href="">退订</a></td>
-                    </tr>
+                    </c:forEach>
+                   
                 </table>
             </div>
         </div>

@@ -3,5 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="njit.dao.BookingDao">
-  
+	<sql id="bookingColumns">
+		id,uid,sid,date,timecode,signed
+	</sql>
+  	<select id="selectBySidAndDate" resultType="booking">
+  		select <include refid="bookingColumns"></include>
+  		from booking 
+  		where sid=#{sid} and date=#{date}
+  	</select>
+  	
+  	<select id="selectTodayBookingDatas" resultType="booking">
+  		select <include refid="bookingColumns"></include>
+  		from booking 
+  		where uid=#{uid} and date=#{today}
+  	</select>
+  	
 </mapper>
