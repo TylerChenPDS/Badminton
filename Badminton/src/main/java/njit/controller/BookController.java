@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import njit.model.Booking;
 import njit.model.Booklimitation;
+import njit.model.Stadium;
 import njit.model.User;
 import njit.service.BookingService;
 import njit.service.BooklimitationService;
+import njit.service.StadiumService;
 
 @Controller
 public class BookController {
@@ -64,7 +65,7 @@ public class BookController {
 	
 	private int startTimeCode = 17;//08:00
 	
-	private int endTimeCode = 48;//21:00
+	private int endTimeCode = 43;//21:00
 	
 	
 	@Autowired
@@ -72,6 +73,9 @@ public class BookController {
 	
 	@Autowired
 	private BooklimitationService booklimitationService;
+	
+	@Autowired
+	private StadiumService stadiumService;
 	
 	@ResponseBody
 	@RequestMapping(value="/bookView.html",method=RequestMethod.GET,produces="text/html;charset=UTF-8")
@@ -148,6 +152,39 @@ public class BookController {
 			bookingService.insertBookRecords(user.getId(),sid,date,timecode);
 		}
 		model.addAttribute("feedback", "预定成功！！");
-		return "redirect:/checkstadium.html";
+		List<Stadium> stadiums = stadiumService.selectAll();
+		model.addAttribute("stadiums", stadiums);
+		return "checkstadium";
 	}
+	
+	
+	//处理退订
+	@RequestMapping(value="/unsubscribe",method=RequestMethod.GET)
+	public String tackleUnsubscribe(
+			@RequestParam("uid")Integer uid,
+			@RequestParam("sid")Integer sid,
+			@RequestParam("date")Date date,
+			@RequestParam("timecode")Integer timecode) {
+		
+		//判断
+		Date now = new Date(System.currentTimeMillis());
+		
+		//已经过的事件点不能选
+		SimpleDateFormat si = new  SimpleDateFormat("HH:m");
+		String[] timecodes = si.format(now).split(":");
+		int nowTimeCode = 0;
+		Integer hh = Integer.parseInt(timecodes[0]);
+		int mm = Integer.parseInt(timecodes[1]);
+		if(mm >= 30)
+			nowTimeCode = hh * 2 + 2;
+		else
+			nowTimeCode = hh * 2 + 1;
+		
+		if(timecode > nowTimeCode) {
+			bookingService.unsubscribe(uid,sid,date,timecode);
+		}
+		return "redirect:/bookinformation.html";
+	}
+	
+	
 }

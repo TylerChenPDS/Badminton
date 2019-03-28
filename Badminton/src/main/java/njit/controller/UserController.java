@@ -129,7 +129,6 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value="admin/deleteUsers.html",method=RequestMethod.POST)
 	public String deleteUsers(@RequestParam("uids") String uids) {
-		System.out.println(uids);
 		uids = uids.replaceAll("\\[|\\]|\"", "");
 		String[] strs = uids.split(",");
 		Integer[] uidArr = new Integer[strs.length];

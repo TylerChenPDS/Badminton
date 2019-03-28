@@ -15,4 +15,6 @@ public interface BookingService extends BaseService<Booking>{
 
 	List<Booking> selectTodayBookingDatas(Integer id, Date today);
 
+	void unsubscribe(Integer uid, Integer sid, Date date, Integer timecode);
+
 }

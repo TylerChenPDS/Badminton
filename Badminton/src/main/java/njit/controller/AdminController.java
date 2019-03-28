@@ -1,5 +1,7 @@
 package njit.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.PageInfo;
 
+import njit.model.Notice;
 import njit.model.Role;
 import njit.model.User;
+import njit.service.NoticeService;
 import njit.service.RoleService;
 import njit.service.UserService;
 
@@ -24,6 +28,9 @@ public class AdminController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private NoticeService noticeService;
 	
 	@RequestMapping(value="/admin/admin.html",method=RequestMethod.GET)
 	public String adminView() {
@@ -53,7 +60,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/issue_notice.html",method=RequestMethod.GET)
-	public String issueNotice() {
+	public String issueNotice(Model model) {
+		
+		Date date = new Date();
+		SimpleDateFormat si = new SimpleDateFormat("yyyy-MM-dd");
+		model.addAttribute("today", si.format(date));
 		return "admin/issue_notice";
 	}
 	
@@ -65,6 +76,16 @@ public class AdminController {
 	@RequestMapping(value="/admin/welcome.html",method=RequestMethod.GET)
 	public String welcome() {
 		return "admin/welcome";
+	}
+	
+	@RequestMapping(value="/admin/governnotice.html",method=RequestMethod.GET)
+	public String governnotice(Model model,@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
+			@RequestParam(value="size",defaultValue="5")int size) {
+		PageInfo<Notice> notices = noticeService.selectNoticesByPage(pageNum,size);
+//		System.err.println(noticeService.selectAll());
+		System.err.println(notices);
+		model.addAttribute("notices", notices);
+		return "admin/governnotice";
 	}
 	
 	

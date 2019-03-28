@@ -40,8 +40,18 @@ public class BookTest {
 			
 			//已经过的事件点不能选
 			
-			SimpleDateFormat si = new  SimpleDateFormat("HH:m");
-			System.out.println(si.format(date));
+//			SimpleDateFormat si = new  SimpleDateFormat("HH:m");
+//			System.out.println(si.format(date));
+			
+			
+			SimpleDateFormat si = new  SimpleDateFormat("yyyy-MM-dd");
+			Date date1 = new Date(si.parse("2019-3-27").getTime()) ;
+			
+			Date date2 = new Date(si.parse("2019-3-28").getTime()) ;
+			
+			System.out.println(date1.compareTo(date2));
+			
+			System.out.println(date1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

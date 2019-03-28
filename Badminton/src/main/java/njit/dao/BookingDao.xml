@@ -16,6 +16,13 @@
   		select <include refid="bookingColumns"></include>
   		from booking 
   		where uid=#{uid} and date=#{today}
+  		ORDER BY sid ASC, timecode ASC
   	</select>
+  	
+  	
+  	<delete id="unsubscribe">
+  		delete from booking
+  		where uid=#{uid} and sid=#{sid} and date=#{date} and timecode=#{timecode}
+  	</delete>
   	
 </mapper>

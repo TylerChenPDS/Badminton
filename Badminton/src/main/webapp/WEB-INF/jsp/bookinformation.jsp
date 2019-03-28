@@ -75,7 +75,7 @@
                     		<td><a href="javascript:void(0);">已过期</a></td>
                     	</c:if>
                     	<c:if test="${booking.timecode>nowTimeCode}">
-                    		<td><a href="">退订</a></td>
+                    		<td><a onclick="return delsure()" href="${pageContext.request.contextPath }/unsubscribe?uid=${booking.uid}&sid=${booking.sid}&date=${booking.date}&timecode=${booking.timecode}">退订</a></td>
                     	</c:if>
                     </tr>
                     </c:forEach>
@@ -97,6 +97,7 @@
     </div>
     <script src="${pageContext.request.contextPath }/static/lib/js/jquery-1.12.4.min.js"></script>
     <script src="${pageContext.request.contextPath }/static/lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/bookinformation.js"></script>
 </body>
 
 </html>

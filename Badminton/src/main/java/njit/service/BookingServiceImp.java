@@ -50,5 +50,9 @@ public class BookingServiceImp extends BaseServiceImp<Booking> implements Bookin
 	public List<Booking> selectTodayBookingDatas(Integer id, Date today) {
 		return bookingDao.selectTodayBookingDatas(id,today);
 	}
+	@Override
+	public void unsubscribe(Integer uid, Integer sid, Date date, Integer timecode) {
+		bookingDao.unsubscribe(uid,sid,date,timecode);
+	}
 
 }

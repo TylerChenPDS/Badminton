@@ -12,4 +12,6 @@ public interface BookingDao extends BaseDao{
 	List<Booking> selectBySidAndDate(@Param("sid")Integer sid, @Param("date")Date date);
 
 	List<Booking> selectTodayBookingDatas(@Param("uid")Integer uid, @Param("today")Date today);
+
+	void unsubscribe(@Param("uid")Integer uid, @Param("sid")Integer sid, @Param("date")Date date, @Param("timecode")Integer timecode);
 }

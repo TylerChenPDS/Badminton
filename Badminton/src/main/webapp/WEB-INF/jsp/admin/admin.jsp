@@ -52,7 +52,7 @@
             <a href="#collapse_course" data-toggle="collapse"><span class="iconfont icon-jiahao"></span> 普通管理员</a>
             <ul id="collapse_course" class="collapse collapse_all">
                 <li><a data-iframe="${pageContext.request.contextPath }/admin/issue_notice.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>发布通知</a></li>
-                <li><a data-iframe="${pageContext.request.contextPath }/admin/edit_notice.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>查看通知</a></li>
+                <li><a data-iframe="${pageContext.request.contextPath }/admin/governnotice.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>管理通知</a></li>
             </ul>
             <br>
         </div>

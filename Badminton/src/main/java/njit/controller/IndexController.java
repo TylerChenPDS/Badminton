@@ -100,10 +100,11 @@ public class IndexController {
 	public String checkStadium(Model model) {
 		List<Stadium> stadiums = stadiumService.selectAll();
 		model.addAttribute("stadiums", stadiums);
-		
-		
 		return "checkstadium";
 	}
+	
+	
+	
 	
 	@RequestMapping(method=RequestMethod.GET,path="/bookinformation.html")
 	public String bookInformation(Model model,HttpSession session) {
@@ -128,6 +129,9 @@ public class IndexController {
 		model.addAttribute("nowTimeCode", nowTimeCode);
 		return "bookinformation";
 	}
+	
+	
+	
 	
 	//通过 图片id获取所有图片的方法
 	@ResponseBody
