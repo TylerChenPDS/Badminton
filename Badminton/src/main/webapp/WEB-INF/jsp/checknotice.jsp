@@ -17,6 +17,11 @@
     <![endif]-->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/main.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/check_notice.css">
+<style type="text/css">
+body {
+	overflow-x: hidden; 
+}
+</style>
 </head>
 
 <body>
@@ -36,9 +41,6 @@
 					<li><a href="${pageContext.request.contextPath }/checkstadium.html">羽毛球场馆动态</a></li>
 					<c:if test="${logineduser!=null}">
 						<li><a href="${pageContext.request.contextPath }/bookinformation.html">场馆预定信息</a></li>
-						<c:if test="${logineduser.roles[0].rolecode=='manager'}">
-							<li><a href="${pageContext.request.contextPath }/admin/admin.html">管理员界面</a></li>
-						</c:if>
 					</c:if>
                 </ul>
             </div>
@@ -52,26 +54,11 @@
     </div>
     <div class="container">
         <div class="row"> 
-            <h2 class="text-center">关于体育馆的放假通知</h2>
-            <p class="time text-center">作者:<span class="author">Tylerchen</span>时间：<span class="time">2019-3-28</span></p>
+            <h2 class="text-center">${notice.title }</h2>
+            <p class="time text-center">作者:<span class="author"> </span>时间：<span class="time">${notice.time }</span></p>
         </div>
         <div class="row">
-            <p class="content">正文
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
-                撒大蝴蝶结啊十大健康撒旦撒健康的哈撒可见度哈撒可见度哈萨克
+            <p class="content">${notice.text }
             </p>
         </div>
     </div>

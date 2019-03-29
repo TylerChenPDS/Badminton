@@ -17,16 +17,15 @@
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<!-- 加载静态资源需要配置的 -->
 	<mvc:default-servlet-handler/>
+	
 	<!-- 配置拦截器 -->
-	<!-- <mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/admin/**"/>
-			<bean class="njit.web.AuthInceptor"></bean>
+			<mvc:mapping path="/**"/>
+			<bean class="njit.web.PagesInteceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
-
+	</mvc:interceptors>
 </beans>

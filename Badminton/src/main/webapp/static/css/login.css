@@ -16,24 +16,35 @@ body{
     margin-top: 60px;
 }
 
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+    border: none;
+}
 
-#loginform{
+
+#adminlogin,
+#userlogin{
     padding: 20px 40px 0 40px;
 }
-#loginform > form > .checkbox{
+#adminlogin > form > .checkbox,
+#userlogin > form > .checkbox{
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-#loginform > form > div > input.btn{
+#adminlogin > form > div > input.btn,
+#userlogin > form > div > input.btn{
     height: 40px;
     line-height: 100%;
     font-size: 16px;
 }
-
-#loginform > form > div > p.text-right > a{
+#adminlogin > form > div > p.text-right > a,
+#userlogin > form > div > p.text-right > a{
     text-decoration: none;
 }
-#loginform > form > div > p.text-right > a > span{
+
+#adminlogin > form > div > p.text-right > a > span
+#userlogin > form > div > p.text-right > a > span{
     font-size: 30px;
 }

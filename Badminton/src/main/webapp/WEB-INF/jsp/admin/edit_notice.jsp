@@ -22,7 +22,7 @@
         <h2 class="text-center">详细信息</h2>
         <div class="col-lg-6 col-xs-5"></div>
         <div class="col-lg-12 col-xs-14">
-            <form action="" method="post">
+            <form action="${pageContext.request.contextPath }/updateNotice" method="post">
             	<input type="hidden" name="id" value="${notice.id }">
                 <div class="form-group">
                     <label for="">标题：</label>
@@ -37,7 +37,7 @@
                         <textarea class="form-control" name="text" id="" cols="30" rows="10">${notice.text }</textarea>
                 </div>
                 <div class="form-group" style="margin-bottom: 80px!important;">
-                	<div class="col-xs-11"><a href="${pageContext.request.contextPath }/delete?nid=${notice.id}" class="form-control btn btn-default">删除</a></div>
+                	<div class="col-xs-11"><a onclick="return delsure();" href="${pageContext.request.contextPath }/deleteNotice?nid=${notice.id}" class="form-control btn btn-default">删除</a></div>
                     <div class="col-xs-12"></div>
                     <div class="col-xs-11"><input type="submit" value="修改" class="form-control btn btn-default"></div>
                 </div>
@@ -46,5 +46,6 @@
     </div>
     <script src="${pageContext.request.contextPath }/static/lib/js/jquery-1.12.4.min.js"></script>
     <script src="${pageContext.request.contextPath }/static/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath }/static/js/edit_notice.js"></script>
 </body>
 </html>

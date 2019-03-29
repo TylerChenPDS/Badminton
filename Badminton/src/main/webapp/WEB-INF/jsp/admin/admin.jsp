@@ -26,10 +26,10 @@
                 </div>
                 <div class="col-md-8 col-md-offset-8 login_info text-right">
                     <span class="iconfont icon-character"></span>
-                    admin
+                    <span>${administrator.stuno}</span>
                     <span class="iconfont icon-rili"></span>
-                    2018-2-1
-                    <a class="pull-right" href=""><span class="iconfont icon-power-bold-01"></span></a>
+                    ${today}
+                    <a class="pull-right" href="${pageContext.request.contextPath }/adminlogout"><span class="iconfont icon-power-bold-01"></span></a>
                 </div>
             </div>
         </div>
@@ -45,8 +45,8 @@
             <a href="#collapse_system" data-toggle="collapse"><span class="iconfont icon-jiahao"></span> 系统设置</a>
             <ul id="collapse_system" class="collapse collapse_all">
                 <li><a data-iframe="${pageContext.request.contextPath }/admin/user_manager.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>用户管理</a></li>
-                <li><a data-iframe="${pageContext.request.contextPath }/admin/role_manager.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>角色管理</a></li>
-                <li><a data-iframe="${pageContext.request.contextPath }/admin/resource_manager.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>资源管理</a></li>
+                <li><a data-iframe="${pageContext.request.contextPath }/admin/welcome.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>角色管理</a></li>
+                <li><a data-iframe="${pageContext.request.contextPath }/admin/welcome.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>资源管理</a></li>
             </ul>
             <br>
             <a href="#collapse_course" data-toggle="collapse"><span class="iconfont icon-jiahao"></span> 普通管理员</a>

@@ -43,9 +43,6 @@
 					<li><a href="${pageContext.request.contextPath }/checkstadium.html">羽毛球场馆动态</a></li>
 					<c:if test="${logineduser!=null}">
 						<li><a href="${pageContext.request.contextPath }/bookinformation.html">场馆预定信息</a></li>
-						<c:if test="${logineduser.roles[0].rolecode=='manager'}">
-							<li><a href="${pageContext.request.contextPath }/admin/admin.html">管理员界面</a></li>
-						</c:if>
 					</c:if>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -100,21 +97,11 @@
 					最新公告<a href="#">全部公告 &gt;</a>
 				</h3>
 			</div>
-			<div class="col-xs-24 col-md-12 tongzhi_h">
-				<span class="tongtai">动态</span> <a href="#">关于12月14号羽毛球场馆占用通知。</a>
-			</div>
-			<div class="col-xs-24 col-md-12 tongzhi_h">
-				<span class="tongtai">动态</span> <a href="#">关于12月14号羽毛球场馆占用通知。</a>
-			</div>
-			<div class="col-xs-24 col-md-12 tongzhi_h">
-				<span class="tongtai">动态</span> <a href="#">关于12月14号羽毛球场馆占用通知。</a>
-			</div>
-			<div class="col-xs-24 col-md-12 tongzhi_h">
-				<span class="tongtai">动态</span> <a href="#">关于12月14号羽毛球场馆占用通知。</a>
-			</div>
-			<div class="col-xs-24 col-md-12 tongzhi_h">
-				<span class="tongtai">动态</span> <a href="#">关于12月14号羽毛球场馆占用通知。</a>
-			</div>
+			<c:forEach var="notice" items="${notices.list }">
+				<div class="col-xs-24 col-md-12 tongzhi_h">
+					<span class="tongtai">动态</span> <a href="${pageContext.request.contextPath }/checknotice.html?nid=${notice.id}">${notice.title }</a>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 	<div class="footer hidden-xs ">

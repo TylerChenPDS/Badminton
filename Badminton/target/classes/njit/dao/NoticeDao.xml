@@ -8,5 +8,6 @@
   	<select id="findAll" resultType="notice">
   		select <include refid="noticeColumn"></include>
   		from notice
+  		order by time asc, title asc
   	</select>
 </mapper>

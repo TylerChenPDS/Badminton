@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import njit.model.Notice;
 import njit.service.NoticeService;
+import njit.web.AuthClass;
+import njit.web.AuthMethod;
 
+@AuthClass
 @Controller
 public class NoticeController {
 	
@@ -18,6 +21,7 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	//更新通知界面
+	@AuthMethod("admin")
 	@RequestMapping(value="/updateNoticeView",method=RequestMethod.GET)
 	public String updateNoticeView(Model model,@RequestParam("nid")Integer nid) {
 		Notice notice = noticeService.select(nid);
@@ -25,7 +29,16 @@ public class NoticeController {
 		return "admin/edit_notice";
 	}
 	
+	//更新通知
+	@AuthMethod("admin")
+	@RequestMapping(value="updateNotice",method=RequestMethod.POST)
+	public String update(Notice notice) {
+		noticeService.update(notice);
+		return "redirect:/admin/governnotice.html";
+	}
+	
 	//发布通知
+	@AuthMethod("admin")
 	@RequestMapping(value="/issueNotice",method=RequestMethod.POST)
 	public String issueNotice(Notice notice) {
 		noticeService.issueNotice(notice);
@@ -33,6 +46,7 @@ public class NoticeController {
 	}
 	
 	//删除对应的通知
+	@AuthMethod("admin")
 	@RequestMapping(value="/deleteNotice",method=RequestMethod.GET)
 	public String deleteNotice(@RequestParam("nid")Integer nid) {
 		noticeService.delete(nid);
@@ -40,6 +54,7 @@ public class NoticeController {
 	}
 	
 	//批量删除通知
+	@AuthMethod("admin")
 	@ResponseBody
 	@RequestMapping(value="/deleteNotices",method=RequestMethod.POST)
 	public String deleteNotices(@RequestParam("nids")String nids) {
@@ -51,8 +66,6 @@ public class NoticeController {
 			nidArr[i] = Integer.parseInt(strs[i]);
 		}
 		noticeService.batchDel(nidArr);
-		
  		return "success";
 	}
-	
 }

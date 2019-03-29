@@ -26,7 +26,10 @@ import njit.model.User;
 import njit.service.BookingService;
 import njit.service.BooklimitationService;
 import njit.service.StadiumService;
+import njit.web.AuthClass;
+import njit.web.AuthMethod;
 
+@AuthClass
 @Controller
 public class BookController {
 	static Map<Integer,String> timeCodetoTime = new HashMap<>();
@@ -143,7 +146,9 @@ public class BookController {
 	}
 	
 	
+	
 	//处理预定
+	@AuthMethod("user")
 	@RequestMapping(value="/booking.html",method=RequestMethod.POST)
 	public String tackleBooking(Model model,@Param("sid")Integer sid,@Param("timecode")Integer []timecode,HttpSession session) {
 		Date date = new Date(System.currentTimeMillis());
@@ -159,6 +164,7 @@ public class BookController {
 	
 	
 	//处理退订
+	@AuthMethod("user")
 	@RequestMapping(value="/unsubscribe",method=RequestMethod.GET)
 	public String tackleUnsubscribe(
 			@RequestParam("uid")Integer uid,

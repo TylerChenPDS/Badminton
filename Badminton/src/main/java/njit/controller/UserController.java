@@ -19,7 +19,10 @@ import njit.model.Role;
 import njit.model.User;
 import njit.service.RoleService;
 import njit.service.UserService;
+import njit.web.AuthClass;
+import njit.web.AuthMethod;
 
+@AuthClass
 @Controller
 public class UserController {
 	
@@ -112,6 +115,7 @@ public class UserController {
 	
 	
 	//管理员向数据库中添加一条用户的记录, roleids 代表该用户的角色。
+	@AuthMethod("admin")
 	@RequestMapping(value="/admin/addUser.html",method=RequestMethod.POST)
 	public String addUser(User user, Integer roleid) {
 		userService.addUserAndRole(user,roleid);
@@ -119,6 +123,7 @@ public class UserController {
 	}
 	
 	//删除一条用户的记录
+	@AuthMethod("admin")
 	@RequestMapping(value="admin/deleteUser.html",method=RequestMethod.GET)
 	public String deleteUser(@RequestParam("id") Integer id) {
 		userService.deleteUserAndUserRolebyUid(id);
@@ -126,6 +131,7 @@ public class UserController {
 	}
 	
 	//批量删除用户
+	@AuthMethod("admin")
 	@ResponseBody
 	@RequestMapping(value="admin/deleteUsers.html",method=RequestMethod.POST)
 	public String deleteUsers(@RequestParam("uids") String uids) {
@@ -140,6 +146,7 @@ public class UserController {
 	}
 	
 	//模糊查询
+	@AuthMethod("admin")
 	@RequestMapping(value="admin/searchUsersByUserInfo.html",method=RequestMethod.POST)
 	public String searchUsersByUserInfo(Model model,
 			@RequestParam(value="userinfo",defaultValue="") String userinfo,
@@ -154,7 +161,7 @@ public class UserController {
 		return "/admin/user_manager";
 	}
 	
-	
+	@AuthMethod("admin")
 	@RequestMapping(value="admin/updateUser.html",method=RequestMethod.POST)
 	public String updateUser(User user,@RequestParam("roleid") Integer roleid) {
 		userService.updateUserAndRole(user,roleid);
@@ -163,6 +170,7 @@ public class UserController {
 	
 	
 	//更新用户视图窗口
+	@AuthMethod("admin")
 	@ResponseBody
 	@RequestMapping(value="admin/updateUserView.html",
 		method=RequestMethod.GET,produces="text/html;charset=UTF-8")

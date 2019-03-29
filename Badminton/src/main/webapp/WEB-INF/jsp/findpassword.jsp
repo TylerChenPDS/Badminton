@@ -31,10 +31,8 @@
             </div>
             <div class="collapse navbar-collapse" id="qihangnavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="">首页</a></li>
-                    <li><a href="">羽毛球场馆动态</a></li>
-                    <li><a href="">管理员界面</a></li>
-                    <li><a href="">个人信息维护</a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath }/index.html">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/checkstadium.html">羽毛球场馆动态</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- <li>
