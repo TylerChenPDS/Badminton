@@ -114,6 +114,25 @@ public class IndexController {
 		return "error";
 	}
 	
+	//所有用户查看所有通知的页面
+	@RequestMapping(value="/allnotice.html",method=RequestMethod.GET)
+	public String allnotice(
+			HttpSession session,
+			Model model,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
+			@RequestParam(value="size",defaultValue="20")int size) {
+		
+		PageInfo<Notice> notices = noticeService.selectNoticesByPage(pageNum, size);
+		model.addAttribute("notices", notices);
+		
+		session.removeAttribute("searchpage");
+		session.removeAttribute("starttime");
+		session.removeAttribute("endtime");
+		return "allnotice";
+	}
+	
+	
+	
 	
 	//通过 图片id获取所有图片的方法
 	@ResponseBody

@@ -10,4 +10,13 @@
   		from notice
   		order by time asc, title asc
   	</select>
+  	
+  	
+  	<select id="searchByDate" resultType="notice">
+		select <include refid="noticeColumn"></include>
+  		from notice
+  		
+  		where time between #{starttime} and #{endtime}
+  		order by time asc, title asc	
+  	</select>
 </mapper>

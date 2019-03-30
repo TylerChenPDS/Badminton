@@ -1,5 +1,6 @@
 package njit.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,12 @@ public class NoticeServiceImp extends BaseServiceImp<Notice> implements NoticeSe
 		for(Integer nid : nidArr) {
 			this.delete(nid);
 		}
+	}
+	@Override
+	public PageInfo<Notice> searchByDatePages(Date starttime, Date endtime, int pageNum, int size) {
+		Page<Notice> pager = PageHelper.startPage(pageNum,size);
+		PageInfo<Notice> info = new PageInfo<>(noticeDao.searchByDate(starttime,endtime));
+		return info;
 	}
 
 }

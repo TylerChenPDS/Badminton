@@ -1,5 +1,9 @@
 package njit.controller;
 
+import java.sql.Date;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.github.pagehelper.PageInfo;
 
 import njit.model.Notice;
 import njit.service.NoticeService;
@@ -68,4 +74,46 @@ public class NoticeController {
 		noticeService.batchDel(nidArr);
  		return "success";
 	}
+	
+	
+	//根据日期搜索通知
+	@AuthMethod("admin")
+	@RequestMapping(value="/searchNotice.html")
+	public String searchNotice(
+			HttpSession session,
+			Model model,
+			@RequestParam("starttime")Date starttime,
+			@RequestParam("endtime")Date endtime,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
+			@RequestParam(value="size",defaultValue="5")int size) {
+		
+		PageInfo<Notice> notices = noticeService.searchByDatePages(starttime,endtime,pageNum,size);
+		model.addAttribute("notices", notices);
+		
+		
+		session.setAttribute("searchpage", true);
+		session.setAttribute("starttime", starttime);
+		session.setAttribute("endtime", endtime);
+		return "admin/governnotice";
+	}
+	
+	//用户查看所有的通知
+	@RequestMapping(value="/searchallnotice.html")
+	public String searchallnotice(
+			HttpSession session,
+			Model model,
+			@RequestParam("starttime")Date starttime,
+			@RequestParam("endtime")Date endtime,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
+			@RequestParam(value="size",defaultValue="20")int size) {
+		
+		PageInfo<Notice> notices = noticeService.searchByDatePages(starttime,endtime,pageNum,size);
+		model.addAttribute("notices", notices);
+		session.setAttribute("searchpage", true);
+		session.setAttribute("starttime", starttime);
+		session.setAttribute("endtime", endtime);
+		return "allnotice";
+	}
+	
+	
 }

@@ -94,7 +94,7 @@
 		<div class="row">
 			<div class="page-header">
 				<h3 class="text-center">
-					最新公告<a href="#">全部公告 &gt;</a>
+					最新公告<a href="${pageContext.request.contextPath }/allnotice.html">全部公告 &gt;</a>
 				</h3>
 			</div>
 			<c:forEach var="notice" items="${notices.list }">

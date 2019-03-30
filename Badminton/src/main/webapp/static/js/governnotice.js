@@ -24,7 +24,7 @@ function checkone() {
 }
 
 function submitsearch() {
-	$("search_form").submit();
+	$("#search_form").submit();
 }
 
 function openIssueView() {

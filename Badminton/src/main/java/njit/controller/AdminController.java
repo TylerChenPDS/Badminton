@@ -82,13 +82,18 @@ public class AdminController {
 	
 	@AuthMethod("admin")
 	@RequestMapping(value="/admin/user_manager.html",method=RequestMethod.GET)
-	public String userManager(Model model,@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
+	public String userManager(
+			HttpSession session,
+			Model model,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
 			@RequestParam(value="size",defaultValue="5")int size) {
 		
 		List<Role> roles = roleService.selectAll();
 		model.addAttribute("allroles", roles);
 		PageInfo<User> users = userService.selectUsersByPage(pageNum, size);
 		model.addAttribute("userDatasByPager", users);
+		session.removeAttribute("userpage");
+		session.removeAttribute("userinfo");
 		return "admin/user_manager";
 	}
 	
@@ -120,14 +125,16 @@ public class AdminController {
 		return "admin/welcome";
 	}
 	
+	//进入管理通知的页面
 	@AuthMethod("admin")
 	@RequestMapping(value="/admin/governnotice.html",method=RequestMethod.GET)
-	public String governnotice(Model model,@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
+	public String governnotice(HttpSession session,Model model,@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
 			@RequestParam(value="size",defaultValue="5")int size) {
 		PageInfo<Notice> notices = noticeService.selectNoticesByPage(pageNum,size);
-//		System.err.println(noticeService.selectAll());
-		System.err.println(notices);
 		model.addAttribute("notices", notices);
+		session.removeAttribute("searchpage");
+		session.removeAttribute("starttime");
+		session.removeAttribute("endtime");
 		return "admin/governnotice";
 	}
 	

@@ -1,5 +1,6 @@
 package njit.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
@@ -13,5 +14,7 @@ public interface NoticeService extends BaseService<Notice>{
 	void issueNotice(Notice notice);
 
 	void batchDel(Integer[] nidArr);
+
+	PageInfo<Notice> searchByDatePages(Date starttime, Date endtime, int pageNum, int size);
 
 }

@@ -28,15 +28,15 @@
             </div>
         </div>
         <div class="row">
-            <form id="search_form" class="form-inline">
+            <form action="${pageContext.request.contextPath }/searchNotice.html" method="post" id="search_form" class="form-inline">
                 <div class="form-group has-feedback">
                     <label>开始时间: </label>
-                    <input type="text" name="starttime" class="form_datetime form-control input-sm"> <span
+                    <input required="required" type="text" name="starttime" class="form_datetime form-control input-sm"> <span
                         class="iconfont icon-rili2 form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
                     <label>结束时间: </label>
-                    <input type="text" name="endtime" class="form_datetime form-control input-sm"> <span
+                    <input required="required" type="text" name="endtime" class="form_datetime form-control input-sm"> <span
                         class="iconfont icon-rili2 form-control-feedback"></span>
                 </div>
                 &nbsp;
@@ -76,15 +76,19 @@
             <p class="pull-left">
                 总共有 <span>${notices.total}</span>条记录，当前页 <span>${notices.pageNum }/${notices.pages }</span> 页
             </p>
+            <c:set var="path" value="admin/governnotice.html?zhanwei"></c:set>
+            <c:if test="${searchpage!=null}">
+            	<c:set var="path" value="searchNotice.html?starttime=${starttime }&endtime=${endtime }"></c:set>
+            </c:if>
             <div class="btn-group pull-right">
                 <a
-					href="${pageContext.request.contextPath}/admin/governnotice.html"
+					href="${pageContext.request.contextPath}/${path}"
 					type="button" class="btn btn-default">首页</a> <a
-					href="${pageContext.request.contextPath}/admin/governnotice.html?pageNum=${notices.prePage }"
+					href="${pageContext.request.contextPath}/${path}&pageNum=${notices.prePage }"
 					type="button" class="btn btn-default">上一页</a> <a
-					href="${pageContext.request.contextPath}/admin/governnotice.html?pageNum=${notices.nextPage }"
+					href="${pageContext.request.contextPath}/${path}&pageNum=${notices.nextPage }"
 					type="button" class="btn btn-default">下一页</a> <a
-					href="${pageContext.request.contextPath}/admin/governnotice.html?pageNum=${notices.pages }"
+					href="${pageContext.request.contextPath}/${path}&pageNum=${notices.pages }"
 					type="button" class="btn btn-default">尾页</a>
             </div>
         </div>

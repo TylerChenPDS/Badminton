@@ -34,7 +34,7 @@
 			<form id="search_form" method="post" action="${pageContext.request.contextPath }/admin/searchUsersByUserInfo.html" class="form-inline">
 				<div class="form-group has-feedback">
 					<label>模糊查询：</label> <input type="text" placeholder="邮箱地址/手机号/学号"
-						name="userinfo" class="form-control input-sm">
+						name="userinfo" required="required" class="form-control input-sm">
 				</div>
 				&nbsp;
 				<div class="form-group">
@@ -87,14 +87,20 @@
 				页
 			</p>
 			<div class="btn-group pull-right">
+				<c:set var="path" value="admin/user_manager.html?zhanwei"></c:set>
+				
+				<c:if test="${userpage!=null }">
+					<c:set var="path" value="admin/searchUsersByUserInfo.html?userinfo=${userinfo }"></c:set>
+				</c:if>
+			
 				<a
-					href="${pageContext.request.contextPath}/admin/user_manager.html?pageNum=1&size=5"
+					href="${pageContext.request.contextPath}/${path}"
 					type="button" class="btn btn-default">首页</a> <a
-					href="${pageContext.request.contextPath}/admin/user_manager.html?pageNum=${userDatasByPager.prePage }"
+					href="${pageContext.request.contextPath}/${path}&pageNum=${userDatasByPager.prePage }"
 					type="button" class="btn btn-default">上一页</a> <a
-					href="${pageContext.request.contextPath}/admin/user_manager.html?pageNum=${userDatasByPager.nextPage }"
+					href="${pageContext.request.contextPath}/${path}&pageNum=${userDatasByPager.nextPage }"
 					type="button" class="btn btn-default">下一页</a> <a
-					href="${pageContext.request.contextPath}/admin/user_manager.html?pageNum=${userDatasByPager.pages }"
+					href="${pageContext.request.contextPath}/${path}&pageNum=${userDatasByPager.pages }"
 					type="button" class="btn btn-default">尾页</a>
 			</div>
 		</div>

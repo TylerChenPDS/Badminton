@@ -147,17 +147,20 @@ public class UserController {
 	
 	//模糊查询
 	@AuthMethod("admin")
-	@RequestMapping(value="admin/searchUsersByUserInfo.html",method=RequestMethod.POST)
-	public String searchUsersByUserInfo(Model model,
-			@RequestParam(value="userinfo",defaultValue="") String userinfo,
+	@RequestMapping(value="admin/searchUsersByUserInfo.html")
+	public String searchUsersByUserInfo(
+			HttpSession session,
+			Model model,
+			@RequestParam(value="userinfo") String userinfo,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
 			@RequestParam(value="size",defaultValue="5") int size) {
 		
 		List<Role> roles = roleService.selectAll();
 		model.addAttribute("allroles", roles);
 		PageInfo<User> users = userService.selectUsersByPageAndUserInfo(userinfo,pageNum, size);
-//		System.out.println(users);
 		model.addAttribute("userDatasByPager", users);
+		session.setAttribute("userpage", true);
+		session.setAttribute("userinfo", userinfo);
 		return "/admin/user_manager";
 	}
 	
