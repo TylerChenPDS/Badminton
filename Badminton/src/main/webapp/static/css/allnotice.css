@@ -8,9 +8,10 @@ input:focus {
 
 #search_btn:hover,
 #pager div button:hover,
-#search_btn button:hover {
-    color: white;
-    background-color: #555;
+#search_btn button:hover,
+.btn:hover{
+    color: white!important;
+    background-color: #555!important;
 }
 
 #search_form {

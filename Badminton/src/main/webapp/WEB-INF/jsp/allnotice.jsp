@@ -41,26 +41,28 @@
 			</div>
 			<div class="collapse navbar-collapse" id="qihangnavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="">首页</a></li>
-					<li><a href="">羽毛球场馆动态</a></li>
-					<li><a href="">场馆预定信息</a></li>
+					<li class="active"><a href="${pageContext.request.contextPath }/index.html">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/checkstadium.html">羽毛球场馆动态</a></li>
+					<c:if test="${logineduser!=null}">
+						<li><a href="${pageContext.request.contextPath }/bookinformation.html">场馆预定信息</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<div class="hidden-xs">
-		<img src="image/banner330-2.jpg" height="100%" width="100%" alt="">
+		<img src="${pageContext.request.contextPath }/static/image/banner330-2.jpg" height="100%" width="100%" alt="">
 	</div>
 	<div class="container-fluid">
 		<div class="row">
-			<form id="search_form" action="${pageContext.request.contextPath }/" method="get" class="form-inline">
+			<form id="search_form" action="${pageContext.request.contextPath }/searchallnotice.html" method="get" class="form-inline">
 				<div class="form-group has-feedback">
-					<label>开始时间: </label> <input type="text" name="starttime"
+					<label>开始时间: </label> <input required="required" type="text" name="starttime"
 						class="form_datetime form-control input-sm"> <span
 						class="iconfont icon-rili2 form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<label>开始时间: </label> <input type="text" name="endtime"
+					<label>开始时间: </label> <input required="required" type="text" name="endtime"
 						class="form_datetime form-control input-sm"> <span
 						class="iconfont icon-rili2 form-control-feedback"></span>
 				</div>

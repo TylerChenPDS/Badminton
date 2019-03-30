@@ -8,5 +8,5 @@ $(function () {
 })
 
 function submitsearch(){
-    $("search_form").submit();
+    $("#search_form").submit();
 }
