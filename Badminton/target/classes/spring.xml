@@ -74,4 +74,11 @@
 			value="classpath:njit/dao/*.xml"></property>
 	</bean>
 	<mybatis-spring:scan base-package="njit.dao"/>
+	
+	<bean id="timeBeginAndEnd" class="njit.model.toolbean.TimeBeginAndEnd">
+		<property name="begintime" value="17"></property>
+		<property name="endtime" value="43"></property>
+	</bean>
+	
+	
 </beans>

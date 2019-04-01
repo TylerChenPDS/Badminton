@@ -8,7 +8,7 @@
   	<select id="findAll" resultType="notice">
   		select <include refid="noticeColumn"></include>
   		from notice
-  		order by time asc, title asc
+  		order by time desc, title asc
   	</select>
   	
   	
@@ -17,6 +17,6 @@
   		from notice
   		
   		where time between #{starttime} and #{endtime}
-  		order by time asc, title asc	
+  		order by time desc, title asc	
   	</select>
 </mapper>

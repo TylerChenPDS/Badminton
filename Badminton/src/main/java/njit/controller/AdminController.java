@@ -1,6 +1,7 @@
 package njit.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,11 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.PageInfo;
 
+import njit.model.Booklimitation;
 import njit.model.Notice;
 import njit.model.Role;
+import njit.model.Stadium;
 import njit.model.User;
+import njit.model.toolbean.TimeBeginAndEnd;
+import njit.model.toolbean.TimeCodeBean;
+import njit.service.BooklimitationService;
 import njit.service.NoticeService;
 import njit.service.RoleService;
+import njit.service.StadiumService;
 import njit.service.UserService;
 import njit.web.AuthClass;
 import njit.web.AuthMethod;
@@ -36,6 +43,15 @@ public class AdminController {
 	
 	@Autowired
 	private NoticeService noticeService;
+	
+	@Autowired
+	private BooklimitationService booklimitationService;  
+	
+	@Autowired
+	private StadiumService stadiumService;
+	
+	@Autowired
+	private TimeBeginAndEnd timeBeginAndEnd;
 	
 	//管理员登陆
 	@RequestMapping(value="/adminlogin",method=RequestMethod.POST)
@@ -138,6 +154,33 @@ public class AdminController {
 		return "admin/governnotice";
 	}
 	
+	
+	
+	//进入修改场馆状态的页面
+	@AuthMethod("admin")
+	@RequestMapping(value="/admin/updateStadiumStateView.html",method=RequestMethod.GET)
+	public String updateStadiumStateView(Model model) {
+		List<Stadium> stadiums = stadiumService.selectAll();
+		model.addAttribute("stadiums", stadiums);
+		List<TimeCodeBean> times = new ArrayList<>(timeBeginAndEnd.getEndtime() - timeBeginAndEnd.getBegintime() + 1);
+		for(int i = timeBeginAndEnd.getBegintime(); i <= timeBeginAndEnd.getEndtime(); i ++) {
+			times.add(new TimeCodeBean(i));
+		}
+		model.addAttribute("times", times);
+		return "admin/update_statdium_state";
+	}
+	
+	@AuthMethod("admin")
+	@RequestMapping(value="/admin/checkStadiumStateView.html",method=RequestMethod.GET)
+	public String checkStadiumStateView(
+			Model model,
+			@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
+			@RequestParam(value="size",defaultValue="5")int size) {
+		
+		PageInfo<Booklimitation> booklimitations = booklimitationService.selectAllLimitsRelStadium(pageNum,size);
+		model.addAttribute("booklimitations", booklimitations);
+		return "admin/check_stadium_state";
+	}
 	
 	
 	

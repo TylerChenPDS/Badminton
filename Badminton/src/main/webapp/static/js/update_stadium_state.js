@@ -6,8 +6,5 @@ $(function () {
         language:"zh-CN",
         minView: "month"
     });
+    $(".selectpicker").selectpicker();
 })
-
-function submitsearch(){
-    $("#search_form").submit();
-}

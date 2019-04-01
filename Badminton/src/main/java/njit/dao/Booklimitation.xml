@@ -6,8 +6,33 @@
 	<sql id="booklimitationColumns">
 		id,sid,date,timecode
 	</sql>
+	
+	<resultMap type="booklimitation" id="booklimitationRelStadium">
+    	<id column="id" property="id"/>
+    	<result column="sid" property="sid"/>
+    	<result column="date" property="date"/>
+    	<result column="timecode" property="timecode"/>
+    	<collection property="stadium" select="njit.dao.BooklimitationDao.getStadiumBySid" column="sid">
+    	</collection>
+    </resultMap>
+    <select id="getStadiumBySid" resultType="stadium">
+  		select id,detail,charge,pid
+  		from stadium
+  		where id=#{sid}
+  	</select>
+  	
+  	<select id="selectAllLimitsRelStadium" resultMap="booklimitationRelStadium">
+  		select <include refid="booklimitationColumns"></include>
+  		from booklimitation
+  		order by date asc
+  	</select>
+    
   	<select id="selectTimeCodeBySidAndDate" resultType="booklimitation">
   		select <include refid="booklimitationColumns"></include>
   		from booklimitation where sid=#{sid} and date=#{date}
   	</select>
+  	
+  	
+  	
+  	
 </mapper>

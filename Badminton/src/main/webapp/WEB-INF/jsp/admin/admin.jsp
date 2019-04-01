@@ -53,6 +53,9 @@
             <ul id="collapse_course" class="collapse collapse_all">
                 <li><a data-iframe="${pageContext.request.contextPath }/admin/issue_notice.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>发布通知</a></li>
                 <li><a data-iframe="${pageContext.request.contextPath }/admin/governnotice.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>管理通知</a></li>
+            	 <li><a data-iframe="${pageContext.request.contextPath }/admin/checkStadiumStateView.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>查看场馆约束</a></li>
+               															 	   
+                <li><a data-iframe="${pageContext.request.contextPath }/admin/updateStadiumStateView.html" href=""><span class="iconfont icon-tubiaozhizuo-"></span>发布场馆约束</a></li>
             </ul>
             <br>
         </div>
