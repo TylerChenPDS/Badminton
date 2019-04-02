@@ -23,6 +23,8 @@ import njit.model.Booking;
 import njit.model.Booklimitation;
 import njit.model.Stadium;
 import njit.model.User;
+import njit.model.toolbean.TimeBeginAndEnd;
+import njit.model.toolbean.TimeCodeBean;
 import njit.service.BookingService;
 import njit.service.BooklimitationService;
 import njit.service.StadiumService;
@@ -32,7 +34,7 @@ import njit.web.AuthMethod;
 @AuthClass
 @Controller
 public class BookController {
-	static Map<Integer,String> timeCodetoTime = new HashMap<>();
+	/*static Map<Integer,String> timeCodetoTime = new HashMap<>();
 	static {
 		String times[] = {
 				"00:00 -- 00:30","00:30 -- 01:00",
@@ -64,11 +66,12 @@ public class BookController {
 		for(int i = 1; i <= 48; i ++) {
 			timeCodetoTime.put(i, times[i-1]);
 		}
-	}
+	}*/
 	
-	private int startTimeCode = 17;//08:00
+	@Autowired
+	private TimeBeginAndEnd timeBeginAndEnd;
 	
-	private int endTimeCode = 43;//21:00
+	
 	
 	
 	@Autowired
@@ -114,11 +117,11 @@ public class BookController {
 		String url = request.getContextPath() + "/booking.html";
 		
 		String options = "";
-		for(int i = startTimeCode; i < endTimeCode; i ++) {
+		for(int i = timeBeginAndEnd.getBegintime(); i <= timeBeginAndEnd.getEndtime(); i ++) {
 			if(limitTimeCodes.contains(i) || i  <= nowTimeCode)
-				options += "<option disabled value='"+ i +"'>"+ timeCodetoTime.get(i) + "（不可选）" +"</option>\r\n";
+				options += "<option disabled value='"+ i +"'>"+ new TimeCodeBean(i).getTimeStr()  + "（不可选）" +"</option>\r\n";
 			else
-				options += "<option value='"+ i +"'>"+ timeCodetoTime.get(i) +"</option>\r\n";
+				options += "<option value='"+ i +"'>"+ new TimeCodeBean(i).getTimeStr() +"</option>\r\n";
 		}
 		return "<div class='modal-header'>\r\n" + 
 				"                    <button type='button' class='close' data-dismiss='modal'>\r\n" + 

@@ -27,9 +27,9 @@
         <div class="col-lg-6 col-xs-5"></div>
         <div class="col-lg-12 col-xs-14">
 
-            <form action="" method="post">
+            <form action="${pageContext.request.contextPath }/admin/addStadiumState" method="post">
                 <div class="form-group  has-feedback">
-                    <label for="">开始时间：</label>
+                    <label for="">开始时间：<font color="red">${err }</font></label>
                     <input type="text" required name="starttime" autocomplete="off"
                         class="form_datetime form-control input-sm"><span
                         class="iconfont icon-rili2 form-control-feedback"></span>
@@ -42,48 +42,20 @@
                 </div>
                 <div class="form-group">
                         <label for="">场地：</label>
-                        <select name="locations" data-live-search="true" multiple class="selectpicker form-control">
+                        <select name="sids" required data-live-search="true" multiple class="selectpicker form-control">
                             <option value="-1">全部场地</option>
-                            <option value='1'>1号场地</option>
-                            <option value='2'>2号场地</option>
-                            <option value='3'>3号场地</option>
-                            <option value='4'>4号场地</option>
-                            <option value='5'>5号场地</option>
-                            <option value='6'>6号场地</option>
-                            <option value='7'>7号场地</option>
-                            <option value='8'>8号场地</option>
+                            <c:forEach var="stadium" items="${stadiums }">
+                            	<option value='${stadium.id }'>${stadium.detail }</option>
+                            </c:forEach>
                         </select>
                     </div>
                 <div class="form-group">
                     <label for="">时间段：</label>
-                    <select name="times" data-live-search="true" multiple class="selectpicker form-control">
+                    <select name="timecodes" required data-live-search="true" multiple class="selectpicker form-control">
                         <option value="-1">全天</option>
-                        <option value='17'>08:00 -- 08:30</option>
-                        <option value='18'>08:30 -- 09:00</option>
-                        <option value='19'>09:00 -- 09:30</option>
-                        <option value='20'>09:30 -- 10:00</option>
-                        <option value='21'>10:00 -- 10:30</option>
-                        <option value='22'>10:30 -- 11:00</option>
-                        <option value='23'>11:00 -- 11:30</option>
-                        <option value='24'>11:30 -- 12:00</option>
-                        <option value='25'>12:00 -- 12:30</option>
-                        <option value='26'>12:30 -- 13:00</option>
-                        <option value='27'>13:00 -- 13:30</option>
-                        <option value='28'>13:30 -- 14:00</option>
-                        <option value='29'>14:00 -- 14:30</option>
-                        <option value='30'>14:30 -- 15:00</option>
-                        <option value='31'>15:00 -- 15:30</option>
-                        <option value='32'>15:30 -- 16:00</option>
-                        <option value='33'>16:00 -- 16:30</option>
-                        <option value='34'>16:30 -- 17:00</option>
-                        <option value='35'>17:00 -- 17:30</option>
-                        <option value='36'>17:30 -- 18:00</option>
-                        <option value='37'>18:00 -- 18:30</option>
-                        <option value='38'>18:30 -- 19:00</option>
-                        <option value='39'>19:00 -- 19:30</option>
-                        <option value='40'>19:30 -- 20:00</option>
-                        <option value='41'>20:00 -- 20:30</option>
-                        <option value='42'>20:30 -- 21:00</option>
+                        <c:forEach var="time" items="${times }">
+                        	<option value='${time.code }'>${time.timeStr }</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <div class="form-group" id="button">
@@ -93,7 +65,7 @@
                 <ul class="attentionlist">
                     <li>1，可以选择一段时间，也可以选择某一天，选择某一天的时候需开始时间和结束时间相同</li>
                     <li>2，时间段可以选择全天，表示全天某个场馆不可以使用。或者选择以一个或多个全天以外的其他选项</li>
-                    <li>3，场馆也可以选择全部场馆或者某几个场馆</li>
+                    <li>3，添加约束将覆盖原来的约束</li>
                 </ul>
             </form>
         </div>

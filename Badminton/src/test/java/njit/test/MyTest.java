@@ -1,7 +1,10 @@
 package njit.test;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +19,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.github.pagehelper.PageInfo;
 
 import njit.dao.BaseDao;
+import njit.dao.BooklimitationDao;
 import njit.model.User;
 import njit.model.UserRole;
+import njit.service.BooklimitationService;
 import njit.service.UserRoleService;
 import njit.service.UserService;
 
@@ -26,13 +31,28 @@ public class MyTest {
 	public  void testMyBatis() {
 		try {
 			ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-			UserService userService = ctx.getBean("userService",UserService.class);
-			User user = new User();
-			user.setEmail("123456789@qq.com");
-			user.setPassword("1312313214");
-			user.setStuno("202161113");
-			user.setTelephone("123");
-			userService.addUserAndRole(user, 2);
+//			UserService userService = ctx.getBean("userService",UserService.class);
+//			User user = new User();
+//			user.setEmail("123456789@qq.com");
+//			user.setPassword("1312313214");
+//			user.setStuno("202161113");
+//			user.setTelephone("123");
+//			userService.addUserAndRole(user, 2);
+			BooklimitationService bs = ctx.getBean(BooklimitationService.class);
+			/*bs.addForNotMatch(new Object[] {
+					"sid",
+					"date",
+					"timecode"
+			}, new Object[] {
+					3,
+					new java.util.Date(),
+					"35,36,37,38"
+			});*/
+			BooklimitationDao bd = ctx.getBean(BooklimitationDao.class);
+			int a = bd.isExist(new java.util.Date(), 1);
+			System.err.println(  "------------------------------------------------"+a);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,6 +136,19 @@ public class MyTest {
 				options += "<option value='"+ i +"'>"+ timeCodetoTime.get(i) +"</option>\r\n";
 		}
 		System.out.println(options);
+	}
+	
+	@Test
+	public void testCalendar() throws ParseException {
+		SimpleDateFormat si = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar ca = Calendar.getInstance();
+		ca.setTime(si.parse("2019-4-2"));
+		Calendar ca1 = Calendar.getInstance();
+		ca1.setTime(new java.sql.Date(si.parse("2019-4-1").getTime()));
+//		System.out.println(ca.getTime());
+//		System.out.println(ca1.getTime());
+		System.out.println(new java.sql.Date(si.parse("2019-4-1").getTime()).compareTo(si.parse("2019-4-2")));
+		
 	}
 	
 	static Map<Integer,String> timeCodetoTime = new HashMap<>();

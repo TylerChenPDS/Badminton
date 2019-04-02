@@ -1,7 +1,9 @@
 package njit.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +25,7 @@ import njit.model.Stadium;
 import njit.model.User;
 import njit.model.toolbean.TimeBeginAndEnd;
 import njit.model.toolbean.TimeCodeBean;
+import njit.service.BookingService;
 import njit.service.BooklimitationService;
 import njit.service.NoticeService;
 import njit.service.RoleService;
@@ -162,6 +165,7 @@ public class AdminController {
 	public String updateStadiumStateView(Model model) {
 		List<Stadium> stadiums = stadiumService.selectAll();
 		model.addAttribute("stadiums", stadiums);
+		
 		List<TimeCodeBean> times = new ArrayList<>(timeBeginAndEnd.getEndtime() - timeBeginAndEnd.getBegintime() + 1);
 		for(int i = timeBeginAndEnd.getBegintime(); i <= timeBeginAndEnd.getEndtime(); i ++) {
 			times.add(new TimeCodeBean(i));
@@ -176,10 +180,78 @@ public class AdminController {
 			Model model,
 			@RequestParam(value="pageNum",defaultValue="1")int pageNum, 
 			@RequestParam(value="size",defaultValue="5")int size) {
-		
 		PageInfo<Booklimitation> booklimitations = booklimitationService.selectAllLimitsRelStadium(pageNum,size);
 		model.addAttribute("booklimitations", booklimitations);
 		return "admin/check_stadium_state";
+	}
+	
+	@AuthMethod("admin")
+	@RequestMapping(value="/admin/addStadiumState",method=RequestMethod.POST)
+	public String addStadiumState(
+			Model model,
+			@RequestParam("starttime")java.sql.Date starttime, 
+			@RequestParam("endtime")java.sql.Date endtime, 
+			@RequestParam("sids")Integer[] sids, 
+			@RequestParam("timecodes")Integer[] timecodes) throws ParseException {
+		
+		SimpleDateFormat si = new SimpleDateFormat("yyyy-MM-dd");
+		Date today = si.parse(si.format(new Date()));
+		if(starttime.compareTo(today) < 0) {
+			model.addAttribute("err", "开始日期应不小于当前日期");
+			return "admin/update_statdium_state";
+		}
+		
+		if(starttime.compareTo(endtime) > 0) {
+			model.addAttribute("err", "开始日期应大于等于结束日期");
+			return "admin/update_statdium_state";
+		}
+		
+		//判断是否选了全部场馆
+		for(int i = 0; i < sids.length; i ++) {
+			if(sids[i] == -1) {
+				List<Stadium> stadiums = stadiumService.selectAll();
+				sids = new Integer[stadiums.size()];
+				for(int j = 0; j < stadiums.size(); j ++) {
+					sids[j] = stadiums.get(j).getId();
+				}
+				break;
+			}
+		}
+		
+		//判断是否选择了全部时间
+		
+		for(int i = 0; i < timecodes.length; i ++) {
+			if(timecodes[i] == -1) {
+				
+				timecodes = new Integer[timeBeginAndEnd.getEndtime() - timeBeginAndEnd.getBegintime() + 1];
+				for(int j = 0; j <= timeBeginAndEnd.getEndtime(); j ++)
+					timecodes[j] = j;
+				break;
+			}
+		}
+		
+		
+		//添加新的约束将覆盖原有的约束
+		String timecode = "";
+		for(int i = 0 ; i < timecodes.length; i ++) {
+			if(i != timecodes.length - 1)
+				timecode += i + ",";
+			else
+				timecode += i;
+		}
+		
+		Calendar start = Calendar.getInstance();
+		start.setTime(starttime);
+		Calendar end = Calendar.getInstance();
+		end.setTime(endtime);
+		
+		while(start.compareTo(end) < 0) {
+			booklimitationService.updateorAddLimitations(start.getTime(),sids,timecode);
+			start.add(Calendar.DATE, 1);
+		}
+		booklimitationService.updateorAddLimitations(end.getTime(),sids,timecode);
+		
+		return "redirect:/admin/checkStadiumStateView.html";
 	}
 	
 	

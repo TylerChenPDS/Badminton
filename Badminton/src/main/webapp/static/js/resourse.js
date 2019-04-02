@@ -1,9 +1,10 @@
 $(function () {
     $(".form_datetime").datetimepicker({
-        format: 'yyyy-mm-dd hh:ii:ss',
+        format: 'yyyy-mm-dd',
         autoclose: true,
         todayBtn: true,
-        language:"zh-CN"
+        language:"zh-CN",
+        minView: "month"
     });
 })
 function checkall(){

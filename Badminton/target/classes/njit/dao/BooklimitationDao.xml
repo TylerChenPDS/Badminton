@@ -32,6 +32,12 @@
   		from booklimitation where sid=#{sid} and date=#{date}
   	</select>
   	
+  	<select id="isExist" resultType="int">
+  		select count(id)
+  		from booklimitation
+  		where sid=#{sid} and date=#{date}
+  	</select>
+  	
   	
   	
   	

@@ -13,4 +13,6 @@ public interface BooklimitationDao extends  BaseDao{
 
 	List<Booklimitation> selectAllLimitsRelStadium();
 
+	Integer isExist(@Param("date")java.util.Date time, @Param("sid")Integer sid);
+
 }

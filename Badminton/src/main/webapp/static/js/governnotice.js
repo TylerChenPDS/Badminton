@@ -3,7 +3,8 @@ $(function() {
 		format : 'yyyy-mm-dd',
 		autoclose : true,
 		todayBtn : true,
-		language : "zh-CN"
+		language : "zh-CN",
+		minView: "month"
 	});
 })
 function checkall() {

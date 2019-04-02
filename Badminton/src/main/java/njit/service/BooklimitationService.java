@@ -12,4 +12,8 @@ public interface BooklimitationService extends BaseService<njit.model.Booklimita
 
 	public PageInfo<Booklimitation> selectAllLimitsRelStadium(int pageNum, int size);
 
+	public void updateorAddLimitations(java.util.Date time, Integer[] sids, String timecode);
+	
+	public void updateorAddLimitation(java.util.Date time, Integer sid, String timecode);
+
 }
