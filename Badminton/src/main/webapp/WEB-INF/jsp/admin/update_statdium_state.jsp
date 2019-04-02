@@ -29,7 +29,7 @@
 
             <form action="${pageContext.request.contextPath }/admin/addStadiumState" method="post">
                 <div class="form-group  has-feedback">
-                    <label for="">开始时间：<font color="red">${err }</font></label>
+                    <label for="">开始时间：<font color="red">${dateerr }</font></label>
                     <input type="text" required name="starttime" autocomplete="off"
                         class="form_datetime form-control input-sm"><span
                         class="iconfont icon-rili2 form-control-feedback"></span>

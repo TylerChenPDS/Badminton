@@ -24,7 +24,7 @@
   	<select id="selectAllLimitsRelStadium" resultMap="booklimitationRelStadium">
   		select <include refid="booklimitationColumns"></include>
   		from booklimitation
-  		order by date asc
+  		order by date asc,sid asc
   	</select>
     
   	<select id="selectTimeCodeBySidAndDate" resultType="booklimitation">

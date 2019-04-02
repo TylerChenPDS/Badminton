@@ -86,13 +86,13 @@
 			</p>
 			<div class="btn-group pull-right">
 				 <a
-					href="${pageContext.request.contextPath}/checkStadiumStateView.html"
+					href="${pageContext.request.contextPath}/admin/checkStadiumStateView.html"
 					type="button" class="btn btn-default">首页</a> <a
-					href="${pageContext.request.contextPath}/checkStadiumStateView.html?pageNum=${booklimitations.prePage }"
+					href="${pageContext.request.contextPath}/admin/checkStadiumStateView.html?pageNum=${booklimitations.prePage }"
 					type="button" class="btn btn-default">上一页</a> <a
-					href="${pageContext.request.contextPath}/checkStadiumStateView.html?pageNum=${booklimitations.nextPage }"
+					href="${pageContext.request.contextPath}/admin/checkStadiumStateView.html?pageNum=${booklimitations.nextPage }"
 					type="button" class="btn btn-default">下一页</a> <a
-					href="${pageContext.request.contextPath}/checkStadiumStateView.html?pageNum=${booklimitations.pages }"
+					href="${pageContext.request.contextPath}/admin/checkStadiumStateView.html?pageNum=${booklimitations.pages }"
 					type="button" class="btn btn-default">尾页</a>
 			</div>
 		</div>

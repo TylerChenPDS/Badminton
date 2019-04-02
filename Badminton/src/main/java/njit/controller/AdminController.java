@@ -165,7 +165,6 @@ public class AdminController {
 	public String updateStadiumStateView(Model model) {
 		List<Stadium> stadiums = stadiumService.selectAll();
 		model.addAttribute("stadiums", stadiums);
-		
 		List<TimeCodeBean> times = new ArrayList<>(timeBeginAndEnd.getEndtime() - timeBeginAndEnd.getBegintime() + 1);
 		for(int i = timeBeginAndEnd.getBegintime(); i <= timeBeginAndEnd.getEndtime(); i ++) {
 			times.add(new TimeCodeBean(i));
@@ -188,57 +187,65 @@ public class AdminController {
 	@AuthMethod("admin")
 	@RequestMapping(value="/admin/addStadiumState",method=RequestMethod.POST)
 	public String addStadiumState(
+			HttpSession session,
 			Model model,
 			@RequestParam("starttime")java.sql.Date starttime, 
 			@RequestParam("endtime")java.sql.Date endtime, 
 			@RequestParam("sids")Integer[] sids, 
 			@RequestParam("timecodes")Integer[] timecodes) throws ParseException {
 		
+		List<Stadium> stadiums = stadiumService.selectAll();
+		model.addAttribute("stadiums", stadiums);
+		List<TimeCodeBean> times = new ArrayList<>(timeBeginAndEnd.getEndtime() - timeBeginAndEnd.getBegintime() + 1);
+		for(int i = timeBeginAndEnd.getBegintime(); i <= timeBeginAndEnd.getEndtime(); i ++) {
+			times.add(new TimeCodeBean(i));
+		}
+		model.addAttribute("times", times);
+		
 		SimpleDateFormat si = new SimpleDateFormat("yyyy-MM-dd");
 		Date today = si.parse(si.format(new Date()));
 		if(starttime.compareTo(today) < 0) {
-			model.addAttribute("err", "开始日期应不小于当前日期");
+			model.addAttribute("dateerr", "开始日期应不小于当前日期");
 			return "admin/update_statdium_state";
 		}
 		
 		if(starttime.compareTo(endtime) > 0) {
-			model.addAttribute("err", "开始日期应大于等于结束日期");
+			model.addAttribute("dateerr", "开始日期应大于等于结束日期");
 			return "admin/update_statdium_state";
 		}
 		
 		//判断是否选了全部场馆
 		for(int i = 0; i < sids.length; i ++) {
 			if(sids[i] == -1) {
-				List<Stadium> stadiums = stadiumService.selectAll();
+				List<Stadium> stadiums1 = stadiumService.selectAll();
 				sids = new Integer[stadiums.size()];
 				for(int j = 0; j < stadiums.size(); j ++) {
-					sids[j] = stadiums.get(j).getId();
+					sids[j] = stadiums1.get(j).getId();
 				}
 				break;
 			}
 		}
 		
 		//判断是否选择了全部时间
-		
 		for(int i = 0; i < timecodes.length; i ++) {
 			if(timecodes[i] == -1) {
-				
 				timecodes = new Integer[timeBeginAndEnd.getEndtime() - timeBeginAndEnd.getBegintime() + 1];
-				for(int j = 0; j <= timeBeginAndEnd.getEndtime(); j ++)
-					timecodes[j] = j;
+				int k = 0;
+				for(int j = timeBeginAndEnd.getBegintime(); j <= timeBeginAndEnd.getEndtime(); j ++)
+					timecodes[k ++] = j;
 				break;
 			}
 		}
-		
 		
 		//添加新的约束将覆盖原有的约束
 		String timecode = "";
 		for(int i = 0 ; i < timecodes.length; i ++) {
 			if(i != timecodes.length - 1)
-				timecode += i + ",";
+				timecode += timecodes[i] + ",";
 			else
-				timecode += i;
+				timecode += timecodes[i];
 		}
+		
 		
 		Calendar start = Calendar.getInstance();
 		start.setTime(starttime);
