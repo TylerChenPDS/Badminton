@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 
@@ -259,6 +260,27 @@ public class AdminController {
 		booklimitationService.updateorAddLimitations(end.getTime(),sids,timecode);
 		
 		return "redirect:/admin/checkStadiumStateView.html";
+	}
+	
+	//删除场馆状态
+	@RequestMapping(value="/admin/deleteStadiumState",method=RequestMethod.GET)
+	public String deleteStadiumState(@RequestParam("id")Integer id) {
+		booklimitationService.delete(id);
+		return "redirect:/admin/checkStadiumStateView.html";
+	}
+	
+	//批量删除场馆的状态
+	@ResponseBody
+	@RequestMapping(value="/admin/deleteStadiumStates",method=RequestMethod.POST)
+	public String deleteStadiumStates(@RequestParam("ids")String ids) {
+		ids = ids.replaceAll("\\[|\\]|\"", "");
+		String[] strs = ids.split(",");
+		Integer[] idArr = new Integer[strs.length];
+		int i = 0;
+		for(String id : strs) 
+			idArr[i ++] = Integer.parseInt(id);
+		booklimitationService.delete(idArr);
+		return "success";
 	}
 	
 	

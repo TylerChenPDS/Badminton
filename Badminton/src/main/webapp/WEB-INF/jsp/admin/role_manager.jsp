@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/user.css">
 </head>
 
-<body>
+<body class="bg-success">
     <div class="container-fluid">
         <div id="search_btn" class="row text-right">
             <button type="button" data-toggle="modal" data-target="#addUserModal" class="btn btn-default">添加</button>

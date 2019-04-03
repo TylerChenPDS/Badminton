@@ -65,16 +65,20 @@ public class Booklimitation {
 		str += inverse(begin);
 		for(int i = 1; i < timecodenums.length; i ++) {
 			if(timecodenums[i] - timecodenums[i - 1] > 1) {
-				if(timecodenums[i - 1] != begin) {
-					str += "-" + inverse(timecodenums[i - 1]);
-					begin = timecodenums[i];
-					str += "," + inverse(begin);
-				}
+				str += "-" + inverse(timecodenums[i - 1] + 1);
+				begin = timecodenums[i];
+				str += "," + inverse(begin);
 			}
 		}
-		if(timecodenums.length >= 2 && timecodenums[timecodenums.length - 1] - timecodenums[timecodenums.length - 2] == 1) {
-			str += "-" + inverse(timecodenums[timecodenums.length - 1]);
-		}
+		
+		//最后一个没有加到
+		str += "-" + inverse(timecodenums[timecodenums.length - 1] + 1);
+		
+		/*if(timecodenums.length >= 2 && timecodenums[timecodenums.length - 1] - timecodenums[timecodenums.length - 2] == 1) {
+			str += "-" + inverse(timecodenums[timecodenums.length - 1] + 1);
+		}else if(timecodenums.length >= 2 && timecodenums[timecodenums.length - 1] - timecodenums[timecodenums.length - 2] > 1){
+			str += "-" + inverse(timecodenums[timecodenums.length - 1] + 1);
+		}*/
 		return str;
  	}
 			
@@ -87,7 +91,7 @@ public class Booklimitation {
 	
 	public static void main(String[] args) {
 		Booklimitation b = new Booklimitation();
-		b.setTimecode("2,1,3,4,5,6,8,9,10");
+		b.setTimecode("1,3,4");
 		System.out.println(b.getTimeStrs());
 	}
 	

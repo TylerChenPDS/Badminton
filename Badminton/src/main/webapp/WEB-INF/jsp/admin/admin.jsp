@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/admin.css">
 </head>
 
-<body>
+<body class="bg-success">
     <div id="admin_top" class="container-fluid">
         <div class="row">
             <div class="navbar navbar-inverse navbar-static-top">
@@ -60,8 +60,8 @@
             <br>
         </div>
     </div>
-    <div id="path_nav">
-        <ol class="breadcrumb">
+    <div id="path_nav" class="bg-success">
+        <ol class="breadcrumb bg-success" >
             <li><a href="#">后台首页</a></li>
             <li><a href="#">系统管理</a></li>
             <li class="active">系统信息</li>

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/issue_notice.css">
 </head>
 
-<body>
+<body class="bg-success">
     <div class="container-fluid bg-success">
         <h2 class="text-center">发布通知</h2>
         <div class="col-lg-6 col-xs-5"></div>
@@ -27,7 +27,7 @@
             <form action="${pageContext.request.contextPath }/issueNotice" method="post">
                 <div class="form-group">
                     <label for="">标题：</label>
-                    <input class="form-control" type="text" name="title">
+                    <input autocomplete="off" class="form-control" type="text" name="title">
                 </div>
                 <div class="form-group">
                     <label for="">时间：</label>

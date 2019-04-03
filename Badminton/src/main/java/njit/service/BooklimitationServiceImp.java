@@ -55,6 +55,12 @@ public class BooklimitationServiceImp extends BaseServiceImp<Booklimitation> imp
 			this.update(bo);
 		}
 	}
+	@Override
+	public void delete(Integer[] idArr) {
+		for(Integer id : idArr) {
+			this.delete(id);
+		}
+	}
 	
 	
 

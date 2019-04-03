@@ -17,7 +17,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body class="bg-success">
     <div class="container-fluid bg-success">
         <h2 class="text-center">详细信息</h2>
         <div class="col-lg-6 col-xs-5"></div>

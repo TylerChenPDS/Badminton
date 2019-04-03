@@ -25,7 +25,7 @@
 	href="${pageContext.request.contextPath }/static/css/index.css" />
 </head>
 
-<body>
+<body class="bg-success">
 	<nav id="main_nav" class="navbar navbar-default navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -51,6 +51,8 @@
 						<li><a
 							href="${pageContext.request.contextPath }/logout.html"><span
 								class="glyphicon glyphicon-log-out"></span> 退出登陆</a></li>
+						<li><a href="${pageContext.request.contextPath }/adminloginview.html" target="_blank"><span
+								class="glyphicon glyphicon-user" ></span> 管理员登陆</a></li>
 					</c:if>
 					<c:if test="${sessionScope.logineduser==null}">
 						<li><a href="${pageContext.request.contextPath }/login.html"><span

@@ -24,6 +24,7 @@
   	<select id="selectAllLimitsRelStadium" resultMap="booklimitationRelStadium">
   		select <include refid="booklimitationColumns"></include>
   		from booklimitation
+  		where date >= DATE_FORMAT(now(),'%Y-%m-%d')
   		order by date asc,sid asc
   	</select>
     
@@ -37,7 +38,6 @@
   		from booklimitation
   		where sid=#{sid} and date=#{date}
   	</select>
-  	
   	
   	
   	

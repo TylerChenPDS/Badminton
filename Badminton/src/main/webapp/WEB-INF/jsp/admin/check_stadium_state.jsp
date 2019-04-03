@@ -25,7 +25,7 @@
 	href="${pageContext.request.contextPath}/static/css/check_stadium_state.css">
 </head>
 
-<body>
+<body class="bg-success">
 	<div class="container-fluid">
 		<!--  <div class="row">
             <div class="serch_title_bar">
@@ -52,9 +52,11 @@
                 </div>
             </form>
         </div> -->
+        
+       <h3 class="text-center" >所有场馆约束信息（只显示今天之后的约束）</h3>
 		<div id="search_btn" class="row text-right">
 			<!-- <button type="button" data-toggle="modal" data-target="#addUserModal" class="btn btn-default">添加</button> -->
-			<button type="button" class="btn btn-default">删除</button>
+			<button type="button" onclick="batchdelete()" class="btn btn-default">删除</button>
 		</div>
 		<div class="row" id="search_table">
 			<div class="table-responsive">
@@ -69,12 +71,12 @@
 					</tr>
 					<c:forEach var="booklimitation" items="${booklimitations.list }">
 						<tr>
-							<td><input type="checkbox" name="checkuser" class="checkone"
+							<td><input value="${booklimitation.id}" type="checkbox" name="checkuser" class="checkone"
 								onclick="checkone()"></td>
 							<td>${booklimitation.date }</td>
 							<td>${booklimitation.stadium.detail }</td>
 							<td>${booklimitation.timeStrs }</td>
-							<td><a href="">删除</a></td>
+							<td><a onclick="return delsure();" href="${pageContext.request.contextPath }/admin/deleteStadiumState?id=${booklimitation.id}">删除</a></td>
 						</tr>
 					</c:forEach>
 				</table>

@@ -25,7 +25,7 @@
 	href="${pageContext.request.contextPath }/static/css/user.css">
 </head>
 
-<body>
+<body class="bg-success">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="serch_title_bar">搜索</div>

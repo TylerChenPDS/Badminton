@@ -21,7 +21,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-success">
     <div id="system-version">
         系统版本
     </div>

@@ -25,7 +25,7 @@
 	href="${pageContext.request.contextPath }/static/css/login.css">
 </head>
 
-<body>
+<body class="bg-success">
 	<c:if test="${registeruser!=null}">
 		<script type="text/javascript">
 			alert("注册成功！")

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/findpassword.css">
 </head>
 
-<body>
+<body class="bg-success">
     <nav id="main_nav" class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">

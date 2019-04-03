@@ -27,7 +27,7 @@
 	href="${pageContext.request.contextPath }/static/css/allnotice.css">
 </head>
 
-<body>
+<body class="bg-success">
 	<nav id="main_nav" class="navbar navbar-default navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -57,12 +57,12 @@
 		<div class="row">
 			<form id="search_form" action="${pageContext.request.contextPath }/searchallnotice.html" method="get" class="form-inline">
 				<div class="form-group has-feedback">
-					<label>开始时间: </label> <input required="required" type="text" name="starttime"
+					<label>开始时间: </label> <input autocomplete="off" required="required" type="text" name="starttime"
 						class="form_datetime form-control input-sm"> <span
 						class="iconfont icon-rili2 form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<label>开始时间: </label> <input required="required" type="text" name="endtime"
+					<label>结束时间: </label> <input autocomplete="off" required="required" type="text" name="endtime"
 						class="form_datetime form-control input-sm"> <span
 						class="iconfont icon-rili2 form-control-feedback"></span>
 				</div>

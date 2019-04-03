@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/lib/bootstrapSelect/css/bootstrap-select.min.css">
 </head>
 
-<body>
+<body class="bg-success">
 	<c:if test="${feedback!=null}">
 		<script type="text/javascript">
 			alert("${feedback}");
@@ -51,6 +51,8 @@
 						<li><a
 							href="${pageContext.request.contextPath }/logout.html"><span
 								class="glyphicon glyphicon-log-out"></span> 退出登陆</a></li>
+						<li><a href="${pageContext.request.contextPath }/adminloginview.html" target="_blank"><span
+								class="glyphicon glyphicon-user"></span> 管理员登陆</a></li>
 					</c:if>
 					<c:if test="${sessionScope.logineduser==null}">
 						<li><a href="${pageContext.request.contextPath }/login.html"><span
@@ -103,7 +105,8 @@
                         <h3><a href="#">${stadium.detail }</a></h3>
                         <p>
                             ￥${stadium.charge }/h
-                            <a href="${pageContext.request.contextPath }/bookView.html?sid=${stadium.id}" data-toggle="modal" data-target="#checkStadium">预定</a>
+                            <%-- <a href="${pageContext.request.contextPath }/bookView.html?sid=${stadium.id}" data-toggle="modal" data-target="#checkStadium">预定</a> --%>
+                       		<a href="${pageContext.request.contextPath }/bookView.html?sid=${stadium.id}" >预定</a>
                         </p>
                     </div>
                 </div>

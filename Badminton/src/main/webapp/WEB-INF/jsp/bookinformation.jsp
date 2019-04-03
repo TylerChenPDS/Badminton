@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/bookinfomation.css">
 </head>
 
-<body>
+<body class="bg-success">
     <nav id="main_nav" class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -45,6 +45,8 @@
 						<li><a
 							href="${pageContext.request.contextPath }/logout.html"><span
 								class="glyphicon glyphicon-log-out"></span> 退出登陆</a></li>
+						<li><a href="${pageContext.request.contextPath }/adminloginview.html" target="_blank"><span
+								class="glyphicon glyphicon-user"></span> 管理员登陆</a></li>
 					</c:if>
 				</ul>
             </div>
@@ -58,7 +60,7 @@
                 </h3>
             </div>
             <div id="booktable" class="table-responsive">
-                <table class="table table-hover table-striped">
+                <table class="table table-hover">
                     <tr>
                         <td>预定时间</td>
                         <td>场馆</td>

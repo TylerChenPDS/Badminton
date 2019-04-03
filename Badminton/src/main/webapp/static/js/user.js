@@ -48,11 +48,9 @@ $(function () {
 					},
 					success : function(data) {
 						if(data == "success")
-							alert("success");
 							$(location).attr("href","/Badminton/admin/user_manager.html");
 					}
 				});
-
 			}
 		}
 	})

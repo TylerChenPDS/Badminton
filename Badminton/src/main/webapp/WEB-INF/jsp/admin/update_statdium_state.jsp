@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/lib/bootstrapSelect/css/bootstrap-select.min.css">
 </head>
 
-<body>
+<body class="bg-success">
     <div class="container-fluid bg-success">
         <h2 class="text-center">添加场馆约束</h2>
         <div class="col-lg-6 col-xs-5"></div>

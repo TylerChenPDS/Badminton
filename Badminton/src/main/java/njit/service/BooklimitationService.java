@@ -16,4 +16,6 @@ public interface BooklimitationService extends BaseService<njit.model.Booklimita
 	
 	public void updateorAddLimitation(java.util.Date time, Integer sid, String timecode);
 
+	public void delete(Integer[] idArr);
+
 }

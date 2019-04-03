@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/governnotice.css">
 </head>
 
-<body>
+<body class="bg-success">
     <div class="container-fluid">
         <div class="row">
             <div class="serch_title_bar">
@@ -31,12 +31,12 @@
             <form action="${pageContext.request.contextPath }/searchNotice.html" method="post" id="search_form" class="form-inline">
                 <div class="form-group has-feedback">
                     <label>开始时间: </label>
-                    <input required="required" type="text" name="starttime" class="form_datetime form-control input-sm"> <span
+                    <input autocomplete="off" required="required" type="text" name="starttime" class="form_datetime form-control input-sm"> <span
                         class="iconfont icon-rili2 form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
                     <label>结束时间: </label>
-                    <input required="required" type="text" name="endtime" class="form_datetime form-control input-sm"> <span
+                    <input autocomplete="off" required="required" type="text" name="endtime" class="form_datetime form-control input-sm"> <span
                         class="iconfont icon-rili2 form-control-feedback"></span>
                 </div>
                 &nbsp;

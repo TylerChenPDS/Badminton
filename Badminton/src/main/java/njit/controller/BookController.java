@@ -83,9 +83,9 @@ public class BookController {
 	@Autowired
 	private StadiumService stadiumService;
 	
-	@ResponseBody
-	@RequestMapping(value="/bookView.html",method=RequestMethod.GET,produces="text/html;charset=UTF-8")
-	public String bookView(@RequestParam("sid")Integer sid,HttpServletRequest request) {
+	
+	@RequestMapping(value="/bookView.html",method=RequestMethod.GET)
+	public String bookView(Model model,@RequestParam("sid")Integer sid,HttpServletRequest request) {
 		List<Integer> limitTimeCodes = new ArrayList<>(96);
 		Date date = new Date(System.currentTimeMillis());
 		
@@ -114,39 +114,92 @@ public class BookController {
 			limitTimeCodes.add(booking.getTimecode());
 		}
 		
-		String url = request.getContextPath() + "/booking.html";
+		List<TimeCodeBean> canReachTimes = new ArrayList<>(48);
 		
-		String options = "";
 		for(int i = timeBeginAndEnd.getBegintime(); i <= timeBeginAndEnd.getEndtime(); i ++) {
-			if(limitTimeCodes.contains(i) || i  <= nowTimeCode)
-				options += "<option disabled value='"+ i +"'>"+ new TimeCodeBean(i).getTimeStr()  + "（不可选）" +"</option>\r\n";
-			else
-				options += "<option value='"+ i +"'>"+ new TimeCodeBean(i).getTimeStr() +"</option>\r\n";
+			if(!limitTimeCodes.contains(i) && i > nowTimeCode) {
+				canReachTimes.add(new TimeCodeBean(i));
+			}else {
+				canReachTimes.add(new TimeCodeBean(i,true));
+			}
 		}
-		return "<div class='modal-header'>\r\n" + 
-				"                    <button type='button' class='close' data-dismiss='modal'>\r\n" + 
-				"                        <span>&times;</span>\r\n" + 
-				"                    </button>\r\n" + 
-				"                    <h4 class='modal-title' id='myModalLabel'>预定场地</h4>\r\n" + 
-				"                </div>\r\n" + 
-				"                <div class='modal-body'>\r\n" + 
-				"                    <!-- 这里面的内容是动态改变的 -->\r\n" + 
-				"                    <form id='bookForm' method='POST' action='"+ url +"'>\r\n" + 
-				"                        <input type='hidden' name='id' value=''>\r\n" + 
-				"                        <div class='form-group'>\r\n" + 
-				"                            <input type='text' value='"+ sid +"' readonly='readonly' name='sid' class='form-control'>\r\n" + 
-				"                        </div>\r\n" + 
-				"                        <div class='form-group'>\r\n" + 
-				"                            <select data-live-search='true' name='timecode' multiple class='selectpicker form-control'>\r\n" + options +
-				"                            </select>\r\n" + 
-				"                        </div>\r\n" + 
-				"                    </form>\r\n" + 
-				"                </div>\r\n" + 
-				"                <div class=\"modal-footer\">\r\n" + 
-				"                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">关闭</button>\r\n" + 
-				"                    <button onclick='submitBook()' type=\"button\" class='btn btn-primary'>预定</button>\r\n" + 
-				"                </div>";
+		
+		SimpleDateFormat sii = new SimpleDateFormat("yyyy-MM-dd");
+		model.addAttribute("today", sii.format(date));
+		model.addAttribute("canReachTimes", canReachTimes);
+		Stadium stadium = stadiumService.select(sid);
+		model.addAttribute("stadium", stadium);
+		return "bookView";
 	}
+	
+	
+	
+	
+	
+//	@ResponseBody
+//	@RequestMapping(value="/bookView.html",method=RequestMethod.GET,produces="text/html;charset=UTF-8")
+//	public String bookView(@RequestParam("sid")Integer sid,HttpServletRequest request) {
+//		List<Integer> limitTimeCodes = new ArrayList<>(96);
+//		Date date = new Date(System.currentTimeMillis());
+//		
+//		//已经过的事件点不能选
+//		SimpleDateFormat si = new  SimpleDateFormat("HH:m");
+//		String[] timecodes = si.format(date).split(":");
+//		int nowTimeCode = 0;
+//		Integer hh = Integer.parseInt(timecodes[0]);
+//		int mm = Integer.parseInt(timecodes[1]);
+//		if(mm >= 30)
+//			nowTimeCode = hh * 2 + 2;
+//		else
+//			nowTimeCode = hh * 2 + 1;
+//		
+//		//被限制的事件点不能选
+//		Booklimitation booklimitation = booklimitationService.selectTimeCodeBySidAndDate(sid,date);
+//		if(booklimitation != null && booklimitation.getTimecode()!= null) {
+//			String timeCodes[] = booklimitation.getTimecode().split(",");
+//			for(int i = 0;i < timeCodes.length; i ++)
+//				limitTimeCodes.add(Integer.parseInt(timeCodes[i]));
+//		}
+//		
+//		//已经被预定过的事件点不能选
+//		List<Booking> bookingrecords = bookingService.selectBySidAndDate(sid,date);
+//		for(Booking booking: bookingrecords) {
+//			limitTimeCodes.add(booking.getTimecode());
+//		}
+//		
+//		String url = request.getContextPath() + "/booking.html";
+//		
+//		String options = "";
+//		for(int i = timeBeginAndEnd.getBegintime(); i <= timeBeginAndEnd.getEndtime(); i ++) {
+//			if(limitTimeCodes.contains(i) || i  <= nowTimeCode)
+//				options += "<option disabled value='"+ i +"'>"+ new TimeCodeBean(i).getTimeStr()  + "（不可选）" +"</option>\r\n";
+//			else
+//				options += "<option value='"+ i +"'>"+ new TimeCodeBean(i).getTimeStr() +"</option>\r\n";
+//		}
+//		return "<div class='modal-header'>\r\n" + 
+//				"                    <button type='button' class='close' data-dismiss='modal'>\r\n" + 
+//				"                        <span>&times;</span>\r\n" + 
+//				"                    </button>\r\n" + 
+//				"                    <h4 class='modal-title' id='myModalLabel'>预定场地</h4>\r\n" + 
+//				"                </div>\r\n" + 
+//				"                <div class='modal-body'>\r\n" + 
+//				"                    <!-- 这里面的内容是动态改变的 -->\r\n" + 
+//				"                    <form id='bookForm' method='POST' action='"+ url +"'>\r\n" + 
+//				"                        <input type='hidden' name='id' value=''>\r\n" + 
+//				"                        <div class='form-group'>\r\n" + 
+//				"                            <input type='text' value='"+ sid +"' readonly='readonly' name='sid' class='form-control'>\r\n" + 
+//				"                        </div>\r\n" + 
+//				"                        <div class='form-group'>\r\n" + 
+//				"                            <select data-live-search='true' name='timecode' multiple class='selectpicker form-control'>\r\n" + options +
+//				"                            </select>\r\n" + 
+//				"                        </div>\r\n" + 
+//				"                    </form>\r\n" + 
+//				"                </div>\r\n" + 
+//				"                <div class=\"modal-footer\">\r\n" + 
+//				"                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">关闭</button>\r\n" + 
+//				"                    <button onclick='submitBook()' type=\"button\" class='btn btn-primary'>预定</button>\r\n" + 
+//				"                </div>";
+//	}
 	
 	
 	
@@ -157,7 +210,10 @@ public class BookController {
 		Date date = new Date(System.currentTimeMillis());
 		User user = (User) session.getAttribute("logineduser");
 		if(user != null && timecode != null) {
+			System.err.println("123123132123123123");
 			bookingService.insertBookRecords(user.getId(),sid,date,timecode);
+		}else {
+			System.err.println("*****************************");
 		}
 		model.addAttribute("feedback", "预定成功！！");
 		List<Stadium> stadiums = stadiumService.selectAll();

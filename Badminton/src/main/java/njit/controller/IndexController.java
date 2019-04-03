@@ -131,7 +131,11 @@ public class IndexController {
 		return "allnotice";
 	}
 	
-	
+	@RequestMapping(value="adminloginview.html",method=RequestMethod.GET)
+	public String adminloginview(Model model) {
+		model.addAttribute("adminerr", "");
+		return "login";
+	}
 	
 	
 	//通过 图片id获取所有图片的方法
