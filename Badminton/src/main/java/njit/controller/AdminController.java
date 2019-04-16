@@ -185,6 +185,10 @@ public class AdminController {
 		return "admin/check_stadium_state";
 	}
 	
+	
+	/**
+	 * @detail 更新场馆状态
+	 */
 	@AuthMethod("admin")
 	@RequestMapping(value="/admin/addStadiumState",method=RequestMethod.POST)
 	public String addStadiumState(

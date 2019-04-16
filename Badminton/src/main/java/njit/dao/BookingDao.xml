@@ -19,6 +19,12 @@
   		ORDER BY sid ASC, timecode ASC
   	</select>
   	
+  	<select id="selectByWeixinNotBeforeTheDate" resultType="booking">
+  		select b.* 
+  		from booking b ,user u 
+  		where 
+  			b.date >= #{date} and u.weixinid=#{weixinid}
+  	</select>
   	
   	<delete id="unsubscribe">
   		delete from booking

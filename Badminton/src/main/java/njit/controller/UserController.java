@@ -226,7 +226,7 @@ public class UserController {
 				"						<div class=\"form-group\">\r\n" + 
 				"							<label for=\"\">邮箱：</label> <input value=\""+ user.getEmail() +"\"\r\n" + 
 				"								class=\"form-control\" type=\"text\" name=\"email\">\r\n" + 
-				"						</div>\r\n" + 
+				"						</div>\r\n" + "<div class='form-group'><label for=''>微信号：</label> <input value='"+ user.getWeixinid() +"' name='weixinid' type='text' class='form-control'> </div>" + 
 				"						<div class=\"form-group \">\r\n" + 
 				"							<label for=\"\">身份：</label>\r\n" + 
 				"\r\n" + radiostr +

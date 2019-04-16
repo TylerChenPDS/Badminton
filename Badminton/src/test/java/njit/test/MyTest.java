@@ -3,12 +3,14 @@ package njit.test;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -149,6 +151,23 @@ public class MyTest {
 //		System.out.println(ca1.getTime());
 		System.out.println(new java.sql.Date(si.parse("2019-4-1").getTime()).compareTo(si.parse("2019-4-2")));
 		
+	}
+	
+	@Test
+	public void test1() {
+		List<Integer> ints = new ArrayList<Integer>();
+		for(int i = 0; i < 21; i ++) {
+			ints.add(i);
+		}
+		ints.removeIf(new Predicate<Integer>() {
+			@Override
+			public boolean test(Integer t) {
+				if(t % 2 == 0)//删除所有偶数
+					return true;
+				return false;
+			}
+		});
+		System.out.println(ints);
 	}
 	
 	static Map<Integer,String> timeCodetoTime = new HashMap<>();

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="njit.dao.UserDao">
-	<sql id="userColum">id,stuno,password,telephone,email</sql>
+	<sql id="userColum">id,stuno,password,telephone,email,weixinid</sql>
 	
     <resultMap type="user" id="userRelRoleMap">
     	<id column="id" property="id"/>
@@ -71,9 +71,29 @@
     	select count(*) from user where ${column}=#{value}
     </select>
     
+    <select id="selectUserByWeixinid" resultMap="userRelRoleMap">
+    	select
+    		<include refid="userColum"></include>
+    	from user
+    	where weixinid=#{weixinid}
+    </select>
+    
+    
+    <select id="selectUserByEmail" resultMap="userRelRoleMap">
+    	select
+    		<include refid="userColum"></include>
+    	from user
+    	where email=#{email}
+    </select>
+    
+    
     
     <delete id="deleteUserRolebyUid">
     	delete from user_role where uid = #{id}
+    </delete>
+    
+    <delete id="weixinid">
+    	delete from user_role where weixinid = #{weixinid}
     </delete>
     
     <update id="updatePasswordStunoRelTel">

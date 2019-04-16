@@ -27,4 +27,24 @@ public interface UserDao extends BaseDao {
 	public int validateisExistByColum(@Param("column")String string, @Param("value")Object value);
 
 	public int updatePasswordStunoRelTel(@Param("stuno")String stuno, @Param("telephone")String telephone, @Param("password")String password);
+
+	/**
+	 * @see 通过用户的微信号返回用户数据,关联上角色
+	 * @param weixinid 用户的微信号
+	 * @return User 返回一条用户数据
+	 */
+	public User selectUserByWeixinid(@Param("weixinid")String weixinid);
+
+	/**
+	 * @detail 通过邮箱号查找用户
+	 * @param email
+	 * @return
+	 */
+	public User selectUserByEmail(@Param("email")String email);
+
+	/**
+	 * @detail 删除对应微信的用户
+	 * @param weixinid
+	 */
+	public void deleteUserByWeixinid(@Param("weixinid")String weixinid);
 }

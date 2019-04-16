@@ -149,5 +149,18 @@
 		    <artifactId>commons-beanutils</artifactId>
 		    <version>1.9.3</version>
 		</dependency>
+		<!--添加spring支持email 依赖-->
+		<dependency>
+		      <groupId>org.springframework</groupId>
+		      <artifactId>spring-context-support</artifactId>
+		      <version>4.3.19.RELEASE</version>
+		</dependency>
+		<!--邮件发送-->
+		<dependency>
+		      <groupId>com.sun.mail</groupId>
+		      <artifactId>javax.mail</artifactId>
+		      <version>1.6.1</version>
+		</dependency>
+		
 	</dependencies>
 </project>

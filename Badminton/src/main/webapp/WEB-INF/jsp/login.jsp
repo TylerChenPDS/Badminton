@@ -88,16 +88,16 @@
 							<div class="form-group">
 								<label for="">账号：<font color="red">${err} </font></label>
 								<c:if test="${registeruser!=null}">
-									<input placeholder="邮箱/手机号/学号" class="form-control" type="text"
+									<input autocomplete="off" placeholder="邮箱/手机号/学号" class="form-control" type="text"
 										required="required" value="${registeruser}" name="userinfo">
 								</c:if>
 								<c:if test="${findPasswordUser!=null}">
-									<input placeholder="邮箱/手机号/学号" class="form-control" type="text"
+									<input autocomplete="off" placeholder="邮箱/手机号/学号" class="form-control" type="text"
 										required="required" value="${findPasswordUser}"
 										name="userinfo">
 								</c:if>
 								<c:if test="${findPasswordUser==null and registeruser==null}">
-									<input placeholder="邮箱/手机号/学号" class="form-control" type="text"
+									<input autocomplete="off" placeholder="邮箱/手机号/学号" class="form-control" type="text"
 										required="required" name="userinfo">
 								</c:if>
 
@@ -141,7 +141,7 @@
 							method="POST">
 							<div class="form-group">
 							<label for="">账户：<font color="red">${adminerr}</font></label>
-								<input placeholder="邮箱/手机号/学号" class="form-control" type="text"
+								<input autocomplete="off" placeholder="邮箱/手机号/学号" class="form-control" type="text"
 									required="required" name="userinfo">
 							</div>
 							<div class="form-group">

@@ -47,6 +47,23 @@
 						<li><a href="${pageContext.request.contextPath }/bookinformation.html">场馆预定信息</a></li>
 					</c:if>
 				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<c:if test="${sessionScope.logineduser!=null}">
+						<li><a>欢迎，<span id="logineduser">${sessionScope.logineduser.stuno }</span></a></li>
+						<li><a
+							href="${pageContext.request.contextPath }/logout.html"><span
+								class="glyphicon glyphicon-log-out"></span> 退出登陆</a></li>
+						<li><a href="${pageContext.request.contextPath }/adminloginview.html" target="_blank"><span
+								class="glyphicon glyphicon-user"></span> 管理员登陆</a></li>
+					</c:if>
+					<c:if test="${sessionScope.logineduser==null}">
+						<li><a href="${pageContext.request.contextPath }/login.html"><span
+								class="glyphicon glyphicon-user"></span> 登陆</a></li>
+						<li><a
+							href="${pageContext.request.contextPath }/register.html"><span
+								class="glyphicon glyphicon-log-out"></span> 注册</a></li>
+					</c:if>
+				</ul>
 			</div>
 		</div>
 	</nav>
@@ -57,18 +74,19 @@
 		<div class="row">
 			<form id="search_form" action="${pageContext.request.contextPath }/searchallnotice.html" method="get" class="form-inline">
 				<div class="form-group has-feedback">
-					<label>开始时间: </label> <input autocomplete="off" required="required" type="text" name="starttime"
+					<label>开始时间: </label> <input  autocomplete="off" required="required" type="text" name="starttime"
 						class="form_datetime form-control input-sm"> <span
-						class="iconfont icon-rili2 form-control-feedback"></span>
+						class="iconfont icon-rili2 form-control-feedback hidden-xs"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<label>结束时间: </label> <input autocomplete="off" required="required" type="text" name="endtime"
+					<label>结束时间: </label> <input  autocomplete="off" required="required" type="text" name="endtime"
 						class="form_datetime form-control input-sm"> <span
-						class="iconfont icon-rili2 form-control-feedback"></span>
+						class="iconfont icon-rili2 form-control-feedback hidden-xs"></span>
 				</div>
 				&nbsp;
 				<div class="form-group">
-					<button id="search_btn" onclick="submitsearch()" type="button"
+					<!-- <input type="submit" id="search_btn" class="btn btn-default" value="查询"> -->
+					<button id="search_btn"  type="submit"
 						class="btn btn-default">查询</button>
 				</div>
 			</form>

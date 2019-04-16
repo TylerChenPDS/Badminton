@@ -7,8 +7,8 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+<!-- <meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" /> -->
 <title>用户管理页面</title>
 <link
 	href="${pageContext.request.contextPath }/static/lib/bootstrap/css/bootstrap.css"
@@ -58,6 +58,7 @@
 						<td>学号</td>
 						<td>手机号</td>
 						<td>邮箱地址</td>
+						<td>微信号</td>
 						<td>角色</td>
 						<td style="width: 130px;">操作</td>
 					</tr>
@@ -68,6 +69,7 @@
 							<td>${user.stuno }</td>
 							<td>${user.telephone }</td>
 							<td>${user.email }</td>
+							<td>${user.weixinid }</td>
 							<td><c:forEach var="role" items="${user.roles }">
 									${role.rolename }
 								</c:forEach>

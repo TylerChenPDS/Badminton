@@ -1,8 +1,10 @@
 package njit.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 public class Booklimitation {
 	private int id;
@@ -44,6 +46,19 @@ public class Booklimitation {
 	
 	public void setStadium(Stadium stadium) {
 		this.stadium = stadium;
+	}
+	
+	/**
+	 * @detail 将限制的时间的集合字符串转化成List&lt;Integer&gt;类型
+	 * @return List&lt;Integer&gt;
+	 */
+	public List<Integer> getTimeCodes(){
+		String[] timecodestrs = this.timecode.split(",");
+		List<Integer> list = new ArrayList<>(timecodestrs.length);
+		for(int i = 0; i < timecodestrs.length; i ++ ) {
+			list.add(Integer.parseInt(timecodestrs[i]));
+		}
+		return list;
 	}
 	
 	//将timecode转化程时间段

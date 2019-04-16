@@ -15,6 +15,4 @@ public class TimeBeginAndEnd {
 	public void setEndtime(Integer endtime) {
 		this.endtime = endtime;
 	}
-	
-	
 }

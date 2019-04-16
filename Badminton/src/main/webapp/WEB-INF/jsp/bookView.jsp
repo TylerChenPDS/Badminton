@@ -88,8 +88,8 @@
                         </select>
                     </div>
                 <div class="form-group" id="button">
-                    <div class="col-xs-16"></div>
-                    <div class="col-xs-8"><input type="submit" onclick="return book();" value="预定" class=" form-control btn btn-default"></div>
+                    <div class="col-lg-16 col-xs-8"></div>
+                    <div class="col-lg-8 col-xs-16"><input type="submit" onclick="return book();" value="预定" class=" form-control btn btn-default"></div>
                 </div>
             </form>
         </div>

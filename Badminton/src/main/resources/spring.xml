@@ -20,6 +20,7 @@
 	<context:property-placeholder
 		location="classpath:jdbc.properties" />
 		
+		
 	
 	<!-- 配置C3P0数据连接池 -->
 	<bean id="dataSource"
@@ -76,9 +77,15 @@
 	<mybatis-spring:scan base-package="njit.dao"/>
 	<!-- 配置羽毛球场馆可以预定的时间17代表8：00开始的半个小时 43代表9：00开始的半个小时。也就是说8：00- -->
 	<bean id="timeBeginAndEnd" class="njit.model.toolbean.TimeBeginAndEnd">
-		<property name="begintime" value="17"></property>
-		<property name="endtime" value="43"></property>
+		<property name="begintime" value="19"></property>
+		<property name="endtime" value="42"></property>
+		<!-- <property name="endtime" value="47"></property> -->
 	</bean>
+	
+
+	
+	
+	
 	
 	
 </beans>

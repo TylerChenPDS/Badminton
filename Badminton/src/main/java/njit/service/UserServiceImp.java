@@ -121,4 +121,62 @@ public class UserServiceImp extends BaseServiceImp<User> implements UserService{
 		return flag != 0;
 	}
 
+	@Override
+	public User selectUserByWeixinid(String weixinid) {
+		return userDao.selectUserByWeixinid(weixinid);
+	}
+
+	@Override
+	public User autoRegisterByWeixinid(String weixinid) {
+		//1,用户表中添加数据
+		this.addForNotMatch(new Object[] {
+				"weixinid"
+		}, new Object [] {
+				weixinid
+		});
+		//添加关联的角色
+		User user = this.selectUserByWeixinid(weixinid);
+		userRoleService.addForNotMatch(new Object[] {
+				"uid",
+				"rid"
+		}, new Object[] {
+				user,
+				2
+		});
+		return selectUserByWeixinid(weixinid);
+	}
+
+	@Override
+	public boolean bindWeixinidAndEmail(String weixinid, String email) {
+		//判断邮箱对应的字段是否存在
+		boolean flag = this.validateisExistByColum("email", email);
+		if(flag) {//如果存在
+			//判断该邮箱是否已经绑定过用户了
+			User user = this.selectUserByEmail(email);
+			if(user != null && !user.getWeixinid().trim().equals(""))
+				return false;
+			if(user != null) {//删除微信号对应的字段，更新邮箱对应的字段对应的微信号
+				userDao.deleteUserByWeixinid(weixinid);
+				user.setWeixinid(weixinid);
+				this.update(user);
+			}
+		}else {//直接将邮箱
+			User user = this.selectUserByWeixinid(weixinid);
+			if(user != null && !user.getEmail().trim().equals("")) {//该用户已经绑定过邮箱
+				return false;
+			}
+			if(user != null) {
+				user.setEmail(email);
+				this.update(user);
+			}
+		}
+		return true;
+	}
+
+
+	@Override
+	public User selectUserByEmail(String email) {
+		return userDao.selectUserByEmail(email);
+	}
+
 }
